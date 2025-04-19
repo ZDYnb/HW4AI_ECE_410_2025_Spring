@@ -29,3 +29,82 @@ I will learn while building. I think it’s worthwhile to spend the rest of the 
 What are the mid-term and final “exams” to check for success?
 Mid-term: Get simulation results working.
 Final: Demonstrate the chiplet running with real test data and compare the performance with CPU/GPU.
+
+I launch my initial test below in deployment mode:
+
+I run below in the shell:
+python sample.py --init_from=gpt2 --start="What is the answer to life, the universe, and everything?" --num_samples=5 --max_new_tokens=100   
+
+generating first inital result:
+(baseconda activate nanogptE_410_2025_Spring\Challenge_lists\Challenge#9\Code\nanoGPT>
+(nanogpt) PS D:\AI4Hardware_ECE_410_2025_Spring\Challenge_lists\Challenge#9\Code\nanoGPT> python sample.py --init_from=gpt2 --start="What is the answer to life, the universe, and everything?" --num_samples=5 --max_new_tokens=100
+Overriding: init_from = gpt2
+Overriding: start = What is the answer to life, the universe, and everything?
+Overriding: num_samples = 5
+Overriding: max_new_tokens = 100
+loading weights from pretrained gpt: gpt2
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 123.65M
+No meta.pkl found, assuming GPT-2 encodings...
+⏱️ Sample 1 | Time: 2.734s | 100 tokens | 27.34 ms/token
+What is the answer to life, the universe, and everything? Have any of the answers to life have anything to do with God?   
+
+What is the answer to life? Have any of the answers to life have anything to do with God? Could there be a God?
+
+Could there be a God? What is the future?
+
+What is the future? Are there any problems with the universe?
+
+
+I am a Christian.
+
+I am a Christian. I'm a Christian. I've never participated in any religion.
+
+
+---------------
+⏱️ Sample 2 | Time: 1.848s | 100 tokens | 18.48 ms/token
+What is the answer to life, the universe, and everything?<|endoftext|>Prime Minister John Key faces a potential deal with Labour MPs who accused him of "double standards" by promising to continue a Labour government funded by taxpayers.        
+
+Key's election strategy would include a "major increase in spending on public services", as well as a promise that all MPs would be paid 1 per cent of wages.
+
+The pledge is a dig at Mr Miliband's claim, which is based on a study last month which found that the government's public services were spending more on public
+---------------
+⏱️ Sample 3 | Time: 1.847s | 100 tokens | 18.47 ms/token
+What is the answer to life, the universe, and everything?
+
+
+Notes's previous articles on the subject have provided some excellent historical analysis.
+
+Some of your previous articles, posted by Michael Fassbender for The New York Times, appear in The New York Times Magazine.
+
+
+Please note that The New York Times' 'Daily Digest' section is not endorsed by the Society of Professional Journalists. Content contained in this section may be found elsewhere on the Internet.<|endoftext|>The M83's are designed to take their name from a French M83-R
+---------------
+⏱️ Sample 4 | Time: 1.870s | 100 tokens | 18.70 ms/token
+What is the answer to life, the universe, and everything? Just as the scriptures instructs us to love and obey God, so the scriptures teach us to believe in and obey God. If we believe in God, why do we believe in others? Does God put a stop to our faith in God? Is God willing to give us the information we need to be fully spiritual beings? Is God willing to make us gain the benefit of their eternal existence? Why, then, do we worship God so much? Because we are His creatures. The scriptures tell us
+---------------
+⏱️ Sample 5 | Time: 1.829s | 100 tokens | 18.29 ms/token
+What is the answer to life, the universe, and everything? This question has been raised in many of the ancient cultures where ancient gods were often worshipped, but many people have an erroneous view…
+
+(We should probably ask a few questions here and there to see what he knows about the ancient gods and what they stand for)
+
+Why does it seem that someone who claims that there is something supernatural is not right? Why is there such a huge difference in how we think about the universe? Are all the gods fair and decent? This is something very
+---------------
+
+✅ Benchmark Summary:
+Total time: 10.135 seconds
+Average per sample: 2.027 seconds
+Average per token: 20.27 ms/token
+Tokens per second: 49.34 tokens/s
+
+I do 5 sample test, benchmark sumary as shown above!
+
+After initial benchmark, I got a sense of my runing gpt2. It runs sample as a test and acutually generate the token through its output. Token by token, the generating sentence forms!
+
+To better my sense of how really the token pop up and sample generated, I use a .ipynb file to line by line dig into my source code. Reconstruct code in ipynb allow me to explore the code struction in a more clear way, other than switching back and forth in different source code folder. You can find my process of analysis of nanogpt code construction in Code/Progress folder.
+
+Key achievement:
+
+
+
