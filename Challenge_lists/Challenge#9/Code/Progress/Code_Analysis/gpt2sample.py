@@ -7,6 +7,14 @@ https://github.com/openai/gpt-2/blob/master/src/model.py
 https://github.com/huggingface/transformers/blob/main/src/transformers/models/gpt2/modeling_gpt2.py
 """
 
+try:
+    profile
+except NameError:
+    profile = lambda x: x 
+
+from memory_profiler import profile
+
+
 import math
 import inspect
 from dataclasses import dataclass
@@ -15,9 +23,14 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
+from memory_profiler import profile
+
+@profile
+def generate_tokens(model, x, max_new_tokens, temperature, top_k):
+    return model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)
 class LayerNorm(nn.Module):
     """ LayerNorm but with an optional bias. PyTorch doesn't support simply bias=False """
-
+    # 
     def __init__(self, ndim, bias):
         super().__init__()
         self.weight = nn.Parameter(torch.ones(ndim))
@@ -76,14 +89,14 @@ class CausalSelfAttention(nn.Module):
         return y
 
 class MLP(nn.Module):
-
+    
     def __init__(self, config):
         super().__init__()
         self.c_fc    = nn.Linear(config.n_embd, 4 * config.n_embd, bias=config.bias)
         self.gelu    = nn.GELU()
         self.c_proj  = nn.Linear(4 * config.n_embd, config.n_embd, bias=config.bias)
         self.dropout = nn.Dropout(config.dropout)
-
+        
     def forward(self, x):
         x = self.c_fc(x)
         x = self.gelu(x)
@@ -202,8 +215,9 @@ class GPT(nn.Module):
         for block in self.transformer.h:
             if hasattr(block.attn, 'bias'):
                 block.attn.bias = block.attn.bias[:,:,:block_size,:block_size]
-
+    
     @classmethod
+    @profile
     def from_pretrained(cls, model_type, override_args=None):
         assert model_type in {'gpt2', 'gpt2-medium', 'gpt2-large', 'gpt2-xl'}
         override_args = override_args or {} # default to empty dict
@@ -301,8 +315,9 @@ class GPT(nn.Module):
         flops_promised = 312e12 # A100 GPU bfloat16 peak flops is 312 TFLOPS
         mfu = flops_achieved / flops_promised
         return mfu
-
+    
     @torch.no_grad()
+
     def generate(self, idx, max_new_tokens, temperature=1.0, top_k=None):
         """
         Take a conditioning sequence of indices idx (LongTensor of shape (b,t)) and complete
@@ -328,6 +343,7 @@ class GPT(nn.Module):
             idx = torch.cat((idx, idx_next), dim=1)
 
         return idx
+
 def main():
     # == your entire script, all setup and execution code goes here ==
     # (starting from parameter setup, seed setting, model loading etc.)
@@ -368,7 +384,14 @@ def main():
     with torch.no_grad():
         with ctx:
             for _ in range(num_samples):
-                y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)
+                y = generate_tokens(model, x, max_new_tokens, temperature, top_k)
+                
+from pycallgraph2 import PyCallGraph
+from pycallgraph2.output import GraphvizOutput
 
 if __name__ == "__main__":
-    main()
+    graphviz = GraphvizOutput()
+    graphviz.output_file = 'gpt2_callgraph.png'
+
+    with PyCallGraph(output=graphviz):
+        main()
