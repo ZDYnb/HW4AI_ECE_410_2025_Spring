@@ -28,3 +28,7 @@ layernorm.v	Mean/Var normalize	Medium (LUT-approx optional)
 final_linear.v	Linear projection to vocab	High
 softmax.v	Exp + Normalize	Medium (LUT-based or CORDIC)
 controller.v	Token FSM + Layer scheduler	Medium
+
+
+I plan to give pyMTL (Mamba) a trial as it shown as this list in the first of our tool choice in the list.
+First, I want to get myself familiar with the tool I decided to choose. As we have conclude in the Challenge #10, I will first give our ideas from challenge of 10 a tiral. 
