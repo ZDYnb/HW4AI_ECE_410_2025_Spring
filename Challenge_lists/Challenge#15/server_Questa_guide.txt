@@ -1,0 +1,174 @@
+     ┌────────────────────────────────────────────────────────────────────┐
+     │                • MobaXterm Personal Edition v23.4 •                │
+     │              (X server, SSH client and network tools)              │
+     │                                                                    │
+     │ ⮞ Your computer drives are accessible through the /drives path     │
+     │ ⮞ Your DISPLAY is set to 10.200.3.232:0.0                          │
+     │ ⮞ When using SSH, your remote DISPLAY is automatically forwarded   │
+     │ ⮞ Each command status is specified by a special symbol (✓ or ✗)    │
+     │                                                                    │
+     │ • Important:                                                       │
+     │ This is MobaXterm Personal Edition. The Professional edition       │
+     │ allows you to customize MobaXterm for your company: you can add    │
+     │ your own logo, your parameters, your welcome message and generate  │
+     │ either an MSI installation package or a portable executable.       │
+     │ We can also modify MobaXterm or develop the plugins you need.      │
+     │ For more information: https://mobaxterm.mobatek.net/download.html  │
+     └────────────────────────────────────────────────────────────────────┘
+
+  03/05/2025   17:36.01   /home/mobaxterm 
+                                                                                                                                                                   ✓
+
+  03/05/2025   17:36.33   /home/mobaxterm  ^V
+: command not found
+                                                                                                                                                                   ✗
+
+  03/05/2025   17:36.35   /home/mobaxterm  ssh ezhou@auto.pdx.edu
+_ssh: Could not resolve hostname auto.pdx.edu: Name or service not known
+                                                                                                                                                                   ✗
+
+  03/05/2025   17:36.45   /home/mobaxterm  ssh ezhou@auto.ece.pdx.edu
+(ezhou@auto.ece.pdx.edu) Password:
+(ezhou@auto.ece.pdx.edu) Password:
+(ezhou@auto.ece.pdx.edu) Password:
+Last failed login: Sat May  3 17:37:11 PDT 2025 from 10.200.3.232 on ssh:notty
+There were 2 failed login attempts since the last successful login.
+Welcome to CentOS Linux release 7.9.2009 (Core) (3.10.0-1160.119.1.el7.x86_64)
+
+=======
+This machine is for the exclusive use of those associated with
+the Maseeh College of Engineering and Computer Science.
+
+ALL ACTIVITY MAY BE RECORDED
+=======
+
+ * CAT Support:    https://cat.pdx.edu/
+ * Email:          support@cat.pdx.edu
+ * Phone:          503-725-5420
+ * Chat:           https://support.cat.pdx.edu
+ * Location:       FAB 82-01
+
+On Redhat/CentOS machines like this one, you have a different home directory
+than perhaps you are used to on Ubuntu systems at MCECS.  You can
+cd /home/$USER to see the top level structure of this system.
+
+More info is available at the CAT website.
+ezhou@auto:~$ ls
+CDS.log                      Downloads     FO1_plot.png   Music             grou_coms_long                    inverter                         setup.csh
+CDS.log.1                    FO0A.png      FO2A.png       Pictures          group#_cmos                       inverter_DUT                     simulation
+CDS.log.2                    FO0B.png      FO2B.png       Public            group#_enhancement                lib.defs                         smb_files
+CDS.log.cdslck               FO0C.png      FO2C.png       Templates         group#_enhancement_               libManager.log                   thinclient_drives
+Compound_Gate                FO0_plot.png  FO2_plot.png   Verilog_tutorial  group#_enhancement_long_plot.png  libManager.log.1
+DUT in Transistor level.png  FO1A.png      FreePDK45      Videos            group#_enhancement_polt.png       libManager.log.2
+Desktop                      FO1B.png      FreePDK45.zip  cds.lib           group#_resist                     panic.log.auto.ece.pdx.edu.9836
+Documents                    FO1C.png      Lab2_plot      dev_html          group#_resist_                    public_html
+ezhou@auto:~$ mkdir VERILOG
+ezhou@auto:~$ cd VERILOG/
+ezhou@auto:~/VERILOG$ ls
+ezhou@auto:~/VERILOG$ gvim and_gate.sv
+ezhou@auto:~/VERILOG$ addpkg
+ezhou@auto:~/VERILOG$ vlog and_gate.sv
+QuestaSim-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+Start time: 17:39:23 on May 03,2025
+vlog and_gate.sv
+-- Compiling module and_gate
+
+Top level modules:
+        and_gate
+End time: 17:39:23 on May 03,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+ezhou@auto:~/VERILOG$ vsim -c and_gate.sv
+Reading pref.tcl
+
+# 2024.2
+
+# vsim -c and_gate.sv
+# Start time: 17:39:34 on May 03,2025
+# ** Error (suppressible): (vsim-19) Failed to access library 'and_gate' at "and_gate".
+# No such file or directory. (errno = ENOENT)
+# Error loading design
+Error loading design
+# End time: 17:39:34 on May 03,2025, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+ezhou@auto:~/VERILOG$ vsim -c and_gate
+Reading pref.tcl
+
+# 2024.2
+
+# vsim -c and_gate
+# Start time: 17:39:50 on May 03,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# //  Questa Sim-64
+# //  Version 2024.2 linux_x86_64 May 20 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading sv_std.std
+# Loading work.and_gate(fast)
+VSIM 1> run -all
+VSIM 2> # Break key hit
+
+[1]+  Stopped                 vsim -c and_gate
+ezhou@auto:~/VERILOG$ touch tb.sv
+ezhou@auto:~/VERILOG$ vlog and_gate.sv tb.sv
+QuestaSim-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+Start time: 17:43:01 on May 03,2025
+vlog and_gate.sv tb.sv
+-- Compiling module and_gate
+-- Compiling module top
+** Error: (vlog-13069) tb.sv(8): near "a": syntax error, unexpected IDENTIFIER, expecting ')' or ','.
+End time: 17:43:02 on May 03,2025, Elapsed time: 0:00:01
+Errors: 1, Warnings: 0
+ezhou@auto:~/VERILOG$ vlog and_gate.sv tb.sv
+QuestaSim-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+Start time: 17:43:22 on May 03,2025
+vlog and_gate.sv tb.sv
+-- Compiling module and_gate
+-- Compiling module top
+
+Top level modules:
+        top
+End time: 17:43:23 on May 03,2025, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0
+ezhou@auto:~/VERILOG$ vsim -c top
+Reading pref.tcl
+
+# 2024.2
+
+# vsim -c top
+# Start time: 17:43:39 on May 03,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# //  Questa Sim-64
+# //  Version 2024.2 linux_x86_64 May 20 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading sv_std.std
+# Loading work.top(fast)
+VSIM 1> run -all
+# a=0, b=0 c=0
+# a=1, b=0 c=0
+# ** Note: $finish    : tb.sv(15)
+#    Time: 15 ns  Iteration: 0  Instance: /top
+# End time: 17:43:45 on May 03,2025, Elapsed time: 0:00:06
+# Errors: 0, Warnings: 0
+ezhou@auto:~/VERILOG$
+ezhou@auto:~/VERILOG$
