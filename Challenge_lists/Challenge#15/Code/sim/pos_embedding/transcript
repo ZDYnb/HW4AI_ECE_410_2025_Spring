@@ -1,0 +1,34 @@
+# vsim -c tb_pos_embedding -do "run 100ns; quit" 
+# Start time: 21:35:15 on May 03,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# //  Questa Sim-64
+# //  Version 2024.2 linux_x86_64 May 20 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading sv_std.std
+# Loading work.tb_pos_embedding(fast)
+# run 100ns
+# Start Simulation
+# Pos ID = 0 => [ 0, 1, 2, 3 ]
+# Pos ID = 1 => [ 4, 5, 6, 7 ]
+# Pos ID = 2 => [ 8, 9, 10, 11 ]
+# Pos ID = 3 => [ 12, 13, 14, 15 ]
+# Pos ID = 4 => [ 16, 17, 18, 19 ]
+# Pos ID = 5 => [ 20, 21, 22, 23 ]
+# Pos ID = 6 => [ 24, 25, 26, 27 ]
+# Pos ID = 7 => [ 28, 29, 30, 31 ]
+# End Simulation
+# ** Note: $finish    : ../../tb/tb_pos_embedding.sv(37)
+#    Time: 80 ns  Iteration: 0  Instance: /tb_pos_embedding
+# End time: 21:35:17 on May 03,2025, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0

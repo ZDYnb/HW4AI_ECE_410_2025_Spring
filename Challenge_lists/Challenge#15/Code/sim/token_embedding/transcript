@@ -1,0 +1,26 @@
+# vsim -c tb_token_embedding 
+# Start time: 20:30:43 on May 03,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Sim-64
+# //  Version 2024.2 linux_x86_64 May 20 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading sv_std.std
+# Loading work.tb_token_embedding(fast)
+# Token 0: '{0, 1, 2, 3, 4, 5, 6, 7}
+# Token 1: '{8, 9, 10, 11, 12, 13, 14, 15}
+# Token 2: '{16, 17, 18, 19, 20, 21, 22, 23}
+# ** Note: $finish    : ../../tb/tb_token_embedding.v(26)
+#    Time: 30 ns  Iteration: 0  Instance: /tb_token_embedding
+# End time: 20:30:49 on May 03,2025, Elapsed time: 0:00:06
+# Errors: 0, Warnings: 0

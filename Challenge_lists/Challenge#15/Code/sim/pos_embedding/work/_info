@@ -1,0 +1,77 @@
+m255
+K4
+z2
+!s12c _opt
+Z0 !s99 nomlopt
+!s11f vlog 2024.2 2024.05, May 20 2024
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z1 d/u/ezhou/HW4AI_ECE_410_2025_Spring/Challenge_lists/Challenge#15/Code/sim/pos_embedding
+T_opt
+!s110 1746333316
+VXD]OMd?:FR63PkaV8ldXa3
+04 16 4 work tb_pos_embedding fast 0
+=1-5254006cf05e-6816ee83-bd6ae-408b
+R0
+!s12f OEM100
+!s12b OEM100
+!s124 OEM100
+!s135 nogc
+o-quiet -auto_acc_if_foreign -work work
+Z2 tCvgOpt 0
+n@_opt
+OL;O;2024.2;79
+vpos_embedding
+Z3 2../../rtl/pos_embedding.sv|../../tb/tb_pos_embedding.sv
+Z4 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z5 !s110 1746333311
+!i10b 1
+!s100 nG4ZZ6m5B2B2Qb3Z3lYiS0
+I8]QJ`d[83LH4D0gWi^<AX1
+S1
+R1
+w1746333307
+8../../rtl/pos_embedding.sv
+F../../rtl/pos_embedding.sv
+!i122 3
+L0 1 26
+Z6 VDg1SIo80bB@j0V0VzS_@n1
+Z7 OL;L;2024.2;79
+r1
+!s85 0
+31
+Z8 !s108 1746333311.000000
+Z9 !s107 ../../tb/tb_pos_embedding.sv|../../rtl/pos_embedding.sv|
+Z10 !s90 -sv|../../rtl/pos_embedding.sv|../../tb/tb_pos_embedding.sv|
+!i113 0
+Z11 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
+vtb_pos_embedding
+R3
+R4
+R5
+!i10b 1
+!s100 jRl91b?QCVLgDVJ4[XgR90
+IU0Rc>mER:AkPo]ooC>7851
+S1
+R1
+w1746332895
+8../../tb/tb_pos_embedding.sv
+F../../tb/tb_pos_embedding.sv
+!i122 3
+L0 3 38
+R6
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R2

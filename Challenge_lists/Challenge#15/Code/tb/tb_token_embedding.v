@@ -2,28 +2,28 @@
 
 module tb_token_embedding;
     reg clk = 0;
-    reg [3:0] token_id;
-    wire [7:0] embedding_vector0, embedding_vector1, embedding_vector2, embedding_vector3;
+    reg [3:0] token_id;  // log2(16) = 4
+    wire [7:0] embedding [0:7]; // N_EMBD = 8
 
-    token_embedding dut (
+    token_embedding #(
+        .VOCAB_SIZE(16),
+        .N_EMBD(8)
+    ) dut (
         .clk(clk),
         .token_id(token_id),
-        .embedding_vector0(embedding_vector0),
-        .embedding_vector1(embedding_vector1),
-        .embedding_vector2(embedding_vector2),
-        .embedding_vector3(embedding_vector3)
+        .embedding(embedding)
     );
 
-    always #5 clk = ~clk; // Clock: 100 MHz
+    always #5 clk = ~clk;
 
     initial begin
-        $dumpfile("wave.vcd"); //This tells Verilator (or any simulator) to write a waveform file named wave.vcd.
-        $dumpvars(0, tb_token_embedding);// This tells the simulator which module's signals to record in the VCD file
-
-        token_id = 4'd0; #10; //This sets token_id to decimal 0, and then waits 10 nanoseconds.
+        token_id = 4'd0; #10;
+        $display("Token 0: %p", embedding);
         token_id = 4'd1; #10;
+        $display("Token 1: %p", embedding);
         token_id = 4'd2; #10;
-
+        $display("Token 2: %p", embedding);
         $finish;
     end
 endmodule
+

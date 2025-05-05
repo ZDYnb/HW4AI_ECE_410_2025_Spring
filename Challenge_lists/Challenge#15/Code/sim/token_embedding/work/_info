@@ -1,0 +1,81 @@
+m255
+K4
+z2
+Z0 !s12c _opt
+Z1 !s99 nomlopt
+R0
+R1
+R0
+R1
+!s11f MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z2 d/u/ezhou/HW4AI_ECE_410_2025_Spring/Challenge_lists/Challenge#15/Code/sim/token_embedding
+T_opt
+!s110 1746329444
+V=`?CVWZ[4mDNlSgSBNUh70
+04 18 4 work tb_token_embedding fast 0
+=1-5254006cf05e-6816df63-e2759-708c
+R1
+!s12f OEM100
+!s12b OEM100
+!s124 OEM100
+!s135 nogc
+o-quiet -auto_acc_if_foreign -work work
+Z3 tCvgOpt 0
+n@_opt
+OL;O;2024.2;79
+vtb_token_embedding
+Z4 2../../rtl/token_embedding.v|../../tb/tb_token_embedding.v
+Z5 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z6 !s110 1746329438
+!i10b 1
+!s100 `9<aYgh7z[GRkHdNc<?NO1
+I=2OCMjA0gFh=1HfGOD76<2
+S1
+R2
+w1746328444
+8../../tb/tb_token_embedding.v
+F../../tb/tb_token_embedding.v
+!i122 7
+L0 3 26
+Z7 VDg1SIo80bB@j0V0VzS_@n1
+Z8 OL;L;2024.2;79
+r1
+!s85 0
+31
+Z9 !s108 1746329437.000000
+Z10 !s107 ../../tb/tb_token_embedding.v|../../rtl/token_embedding.v|
+Z11 !s90 -sv|../../rtl/token_embedding.v|../../tb/tb_token_embedding.v|
+!i113 0
+Z12 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R3
+vtoken_embedding
+R4
+R5
+R6
+!i10b 1
+!s100 fA^eChI@RonmNcb9Lkc6A1
+IgDQBP64HXEjeO;VldabOk3
+S1
+R2
+w1746329364
+8../../rtl/token_embedding.v
+F../../rtl/token_embedding.v
+!i122 7
+L0 3 28
+R7
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R3
