@@ -1,0 +1,42 @@
+// Verilated -*- C++ -*-
+// DESCRIPTION: Verilator output: Design internal header
+// See Vdot_product.h for the primary calling header
+
+#ifndef VERILATED_VDOT_PRODUCT___024ROOT_H_
+#define VERILATED_VDOT_PRODUCT___024ROOT_H_  // guard
+
+#include "verilated.h"
+
+
+class Vdot_product__Syms;
+
+class alignas(VL_CACHE_LINE_BYTES) Vdot_product___024root final : public VerilatedModule {
+  public:
+
+    // DESIGN SPECIFIC STATE
+    CData/*0:0*/ __VstlFirstIteration;
+    CData/*0:0*/ __VicoFirstIteration;
+    CData/*0:0*/ __VactContinue;
+    VL_OUT16(result,15,0);
+    IData/*31:0*/ __VactIterCount;
+    VL_IN16(a[4],15,0);
+    VL_IN16(b[4],15,0);
+    VlTriggerVec<1> __VstlTriggered;
+    VlTriggerVec<1> __VicoTriggered;
+    VlTriggerVec<0> __VactTriggered;
+    VlTriggerVec<0> __VnbaTriggered;
+
+    // INTERNAL VARIABLES
+    Vdot_product__Syms* const vlSymsp;
+
+    // CONSTRUCTORS
+    Vdot_product___024root(Vdot_product__Syms* symsp, const char* v__name);
+    ~Vdot_product___024root();
+    VL_UNCOPYABLE(Vdot_product___024root);
+
+    // INTERNAL METHODS
+    void __Vconfigure(bool first);
+};
+
+
+#endif  // guard

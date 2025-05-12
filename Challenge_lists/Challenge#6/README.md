@@ -1,4 +1,4 @@
-# Challenge #6  
+# Challenge #6 Logic Neuron Gate
 **Eric Zhou**  
 **April 13, 2025**
 

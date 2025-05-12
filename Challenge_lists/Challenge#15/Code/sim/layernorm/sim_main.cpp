@@ -1,37 +1,29 @@
-#include "Vlayernorm.h"
+#include "Vlayernorm_top.h"
 #include "verilated.h"
 #include <cstdio>
+#include <cstdint>
 
-int main(int argc, char **argv) {
-    Verilated::commandArgs(argc, argv);
-    Vlayernorm* top = new Vlayernorm;
+int main() {
+    const char* argv[] = {};
+    Verilated::commandArgs(0, argv);
 
-    // Clock and reset init
-    top->clk = 0;
-    top->rst = 1;
-    top->eval();
-    top->clk = 1;
-    top->eval();
-    top->rst = 0;
+    Vlayernorm_top* dut = new Vlayernorm_top;
 
-    // Pack 4 8-bit numbers into one 32-bit bus
-    uint32_t packed_input = (10 << 0) | (20 << 8) | (30 << 16) | (40 << 24);
-    top->in_vector_flat = packed_input;
+    // Set up input: x = [4.0, 6.0, 10.0, 0.0] in Q8.8
+    dut->x[0] = 4 * 256;
+    dut->x[1] = 6 * 256;
+    dut->x[2] = 10 * 256;
+    dut->x[3] = 0 * 256;
 
-    // Simulate a few clock cycles
-    for (int i = 0; i < 5; ++i) {
-        top->clk = 0;
-        top->eval();
-        top->clk = 1;
-        top->eval();
+    // Evaluate the whole system
+    dut->eval();
+
+    // Print output values
+    for (int i = 0; i < 4; i++) {
+        int16_t val = (int16_t)dut->norm_x[i];
+        printf("norm_x[%d] = %d (float: %.4f)\n", i, val, val / 256.0);
     }
 
-    // Extract output
-    for (int i = 0; i < 4; ++i) {
-        uint8_t val = (top->out_vector_flat >> (i * 8)) & 0xFF;
-        printf("Normalized[%d] = %d\n", i, val);
-    }
-
-    delete top;
+    delete dut;
     return 0;
 }

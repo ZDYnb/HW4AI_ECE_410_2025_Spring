@@ -104,6 +104,9 @@ After initial benchmark, I got a sense of my runing gpt2. It runs sample as a te
 
 To better my sense of how really the token pop up and sample generated, I use a .ipynb file to line by line dig into my source code. Reconstruct code in ipynb allow me to explore the code struction in a more clear way, other than switching back and forth in different source code folder. You can find my process of analysis of nanogpt code construction in Code/Progress folder.
 
+👉 View full notebook output and progress here:  
+[Code/Progress/Transformer.md](Code/Progress/README.md)
+
 Key achievement:
 
 
