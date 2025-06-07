@@ -111,3 +111,22 @@ Key achievement:
 
 
 
+
+
+Trial with GPT:
+
+Pretty bad, and ugly result - suffering 
+回答非常谄媚
+
+
+
+Come back to learn some basic for a while that I could identify the errors and the flow at least
+
+
+Trial with GeminiL
+
+Really encouraging reply. After I brefily introduce my model and optimized componets for Gemini good
+
+Overall Goal for Iteration 1:
+Design, implement, and test the fundamental building block for matrix multiplication: a Multiply-Accumulate (MAC) unit and then a simple Dot Product Unit. This will form the heart of your GEMM (General Matrix Multiply) operations needed for all linear layers and attention calculations in GPT-2.
+

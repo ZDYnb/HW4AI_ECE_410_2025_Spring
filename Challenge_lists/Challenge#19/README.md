@@ -9,6 +9,8 @@ vlog +acc lif_neuron.sv lif_neuron_tb.sv
 
  vsim -voptargs="+acc" lif_neuron_tb
 
+add wave -r /*
+run -all
 
 use gpt to write system verilog code is pain
 
