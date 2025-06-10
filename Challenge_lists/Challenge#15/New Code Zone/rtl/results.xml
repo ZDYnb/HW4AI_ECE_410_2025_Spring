@@ -1,11 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1749283949" />
-    <testcase name="test_mac_debug_step_by_step" classname="mac_unit_test" file="/mnt/d/AI4Hardware_ECE_410_2025_Spring/Challenge_lists/Challenge#15/New Code Zone/rtl/mac_unit_test.py" lineno="22" time="0.002582073211669922" sim_time_ns="265.001" ratio_time="102631.09458024007" />
-    <testcase name="test_mac_basic" classname="mac_unit_test" file="/mnt/d/AI4Hardware_ECE_410_2025_Spring/Challenge_lists/Challenge#15/New Code Zone/rtl/mac_unit_test.py" lineno="108" time="0.0013883113861083984" sim_time_ns="215.00100000000003" ratio_time="154865.1132241113" />
-    <testcase name="test_mac_accumulate" classname="mac_unit_test" file="/mnt/d/AI4Hardware_ECE_410_2025_Spring/Challenge_lists/Challenge#15/New Code Zone/rtl/mac_unit_test.py" lineno="152" time="0.002069234848022461" sim_time_ns="245.00100000000003" ratio_time="118401.73687106812" />
-    <testcase name="test_mac_negative" classname="mac_unit_test" file="/mnt/d/AI4Hardware_ECE_410_2025_Spring/Challenge_lists/Challenge#15/New Code Zone/rtl/mac_unit_test.py" lineno="197" time="0.0022666454315185547" sim_time_ns="275.001" ratio_time="121325.10721615651" />
-    <testcase name="test_mac_enable_clear" classname="mac_unit_test" file="/mnt/d/AI4Hardware_ECE_410_2025_Spring/Challenge_lists/Challenge#15/New Code Zone/rtl/mac_unit_test.py" lineno="240" time="0.0014603137969970703" sim_time_ns="235.0010000000001" ratio_time="160925.00151902047" />
-    <testcase name="test_mac_overflow" classname="mac_unit_test" file="/mnt/d/AI4Hardware_ECE_410_2025_Spring/Challenge_lists/Challenge#15/New Code Zone/rtl/mac_unit_test.py" lineno="285" time="0.0012216567993164062" sim_time_ns="215.00099999999998" ratio_time="175991.3259765808" />
+    <property name="random_seed" value="1749548035" />
+    <testcase name="test_separated_bus_monitoring" classname="test_tiny_gpt2" file="/mnt/d/AI4Hardware_ECE_410_2025_Spring/Challenge_lists/Challenge#15/New Code Zone/rtl/test_tiny_gpt2.py" lineno="157" time="1.6761677265167236" sim_time_ns="4850.001" ratio_time="2893.5057770613926" />
   </testsuite>
 </testsuites>

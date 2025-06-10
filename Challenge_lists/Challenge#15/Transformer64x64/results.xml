@@ -1,0 +1,17 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1749255594" />
+    <testcase name="test_spi_basic_interface" classname="spi_transformer_testbench" file="/mnt/d/AI4Hardware_ECE_410_2025_Spring/Challenge_lists/Challenge#15/Transformer64x64/spi_transformer_testbench.py" lineno="156" time="0.9783229827880859" sim_time_ns="995.001" ratio_time="1017.0475574072522">
+      <failure message="Test failed with RANDOM_SEED=1749255594" />
+    </testcase>
+    <testcase name="test_matrix_transfer" classname="spi_transformer_testbench" file="/mnt/d/AI4Hardware_ECE_410_2025_Spring/Challenge_lists/Challenge#15/Transformer64x64/spi_transformer_testbench.py" lineno="183" time="0.9767165184020996" sim_time_ns="1059.001" ratio_time="1084.2460223080052">
+      <failure message="Test failed with RANDOM_SEED=1749255594" />
+    </testcase>
+    <testcase name="test_transformer_passthrough" classname="spi_transformer_testbench" file="/mnt/d/AI4Hardware_ECE_410_2025_Spring/Challenge_lists/Challenge#15/Transformer64x64/spi_transformer_testbench.py" lineno="190" time="70517.52910685539" sim_time_ns="1032530.0" ratio_time="14.64217497518106">
+      <failure message="Test failed with RANDOM_SEED=1749255594" />
+    </testcase>
+    <testcase name="test_performance_benchmark" classname="spi_transformer_testbench" file="/mnt/d/AI4Hardware_ECE_410_2025_Spring/Challenge_lists/Challenge#15/Transformer64x64/spi_transformer_testbench.py" lineno="190" time="0" sim_time_ns="0" ratio_time="nan">
+      <failure message="Test failed with RANDOM_SEED=1749255594" />
+    </testcase>
+  </testsuite>
+</testsuites>

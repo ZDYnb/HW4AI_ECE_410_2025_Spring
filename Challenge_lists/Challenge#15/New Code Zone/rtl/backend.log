@@ -1,0 +1,1 @@
+softmax_backend.v:40: error: Variable declaration in unnamed block requires SystemVerilog.
