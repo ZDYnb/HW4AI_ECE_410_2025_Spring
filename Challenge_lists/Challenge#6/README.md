@@ -1,140 +1,147 @@
-# Challenge #6 Logic Neuron Gate
+# Challenge #6: Logic Neuron Gate
 **Eric Zhou**  
 **April 13, 2025**
 
+---
+
 ## Objective
-In this challenge, I aim to walk myself through the foundational concept of a single neuron — the basic building block of neural networks.
+
+Walk through the foundational concept of a single neuron — the basic building block of neural networks.
+
+---
 
 ## Background Learning
-Today, neural networks are widely used in many real-world applications, and our 410 course is designed around that. But before we jump into deep networks, it's important to ask:
-Why is the "neuron" chosen as the fundamental unit in a neural network?
-A neuron in a neural network is inspired by the biological neurons. It accepts multiple inputs. Each input then multiplied by a corresponding weight, sums them together and then passes the sum through a **non-linear activation function**. The output is then either used directly or passed as input to another neuron in the next layer.
+
+Neural networks are widely used in real-world applications, and our ECE 410 course is designed around them. But before diving into deep networks, it's important to ask:
+
+> **Why is the "neuron" chosen as the fundamental unit in a neural network?**
+
+A neuron in a neural network is inspired by biological neurons. It:
+- Accepts multiple inputs
+- Multiplies each input by a corresponding weight
+- Sums them together
+- Passes the sum through a **non-linear activation function**
+- Outputs the result (used directly or as input to the next neuron)
 
 \[
 \text{Output} = \text{ActivationFunction}\left( \sum_{i=1}^{n} w_i \cdot x_i + b \right)
 \]
 
 Where:
-- \(x_i\) = input values  
-- \(w_i\) = weights  
-- \(b\) = bias  
-- ActivationFunction = non-linear function (e.g., sigmoid)
+- \(x_i\): input values  
+- \(w_i\): weights  
+- \(b\): bias  
+- ActivationFunction: non-linear function (e.g., sigmoid)
 
-The designed structure above allows neurons to form the networks. Through different ways of connecting and stacking creates different network architectures based on our demands.
+This structure allows neurons to form networks. By connecting and stacking neurons in different ways, we create various architectures to meet our needs.
 
-Expectedly, we want to build a powerful system that can map **any input** to our **desired output**.
+The goal: **Build a system that can map any input to our desired output.**
 
-To achieve this, we introduce **weights** into the structure of the neuron as mentioned in previous fomula. These weights determine how much each input contributes to the final result.
+To achieve this, we introduce **weights**. These determine how much each input contributes to the final result. In practice, we don’t manually assign weights — we learn them through **backpropagation** (supervised learning).
 
-In practice, we don’t manually assign weights — instead, we learn them through a process called backpropagation, which is part of supervised learning.
+During training:
+- Compare actual output with expected output
+- Calculate the error
+- Adjust the weights
 
-During training, we compare the actual output with the expected output, calculate the error, and use it to adjust the weights.
-
-Gradient Descent Update Rule (Simplified):
+**Gradient Descent Update Rule (Simplified):**
 
 \[
 w_i \leftarrow w_i + \eta \cdot (y - \hat{y}) \cdot x_i
 \]
 
 Where:
-- \(y\) = expected output  
-- \(\hat{y}\) = predicted output  
-- \(\eta\) = learning rate  
-- \(x_i\) = input value  
-- \(w_i\) = weight to update
-
-Once we get the updated weight, we will go through our model and gain new predicted outputs and adjust again.
+- \(y\): expected output  
+- \(\hat{y}\): predicted output  
+- \(\eta\): learning rate  
+- \(x_i\): input value  
+- \(w_i\): weight to update
 
 Each training step involves:
-1. Forward Pass: Compute predicted output  
-2. Error Calculation: Compare with expected output  
-3. Backward Pass: Adjust weights to reduce error
+1. **Forward Pass:** Compute predicted output  
+2. **Error Calculation:** Compare with expected output  
+3. **Backward Pass:** Adjust weights to reduce error
 
-We go through the above training process multiple times — each cycle is called an epoch — until we reach a convergence point, where the model's performance becomes stable and the error is sufficiently low.
+Repeat for multiple epochs until convergence (error is sufficiently low).
 
-This convergence indicates that we have trained a good enough system that can reliably map inputs to outputs.
+> **This process builds a function approximator. The network fits the input-output relationship through iterative updates.**
 
-You can view this process as building a function approximator. The network tries to fit the input-output relationship through iterative updates.
+### Why Non-Linear Activation?
 
-Notice I highlight the non-linear activation function in the above context. Why we want an none- activation function? In math, there have been proved that without the activation function or with linear activation function, no matter what strcuture you built around neurons networks, how many layers we adds, the neuron network system will always remain linear.
+Without a non-linear activation function, no matter how many layers we add, the network remains linear. To learn complex, non-linear patterns (like image edges or logic gates), we need non-linearity.
 
+**Common non-linear activation functions:**  
+- Sigmoid  
+- ReLU  
+- Tanh
 
-To learn complex, non-linear patters(like image edges, logic gates), we need our system has the ability to map the **non-linearity**. That’s where  some non-linear activation functions like **sigmoid**, **ReLU**, or **tanh** come in.
+#### Reference
 
-To understand this better, I referred to:  
-**Jason Brownlee, _A Gentle Introduction to the Sigmoid Function_, [Machine Learning Mastery](https://machinelearningmastery.com/a-gentle-introduction-to-sigmoid-function)**
+> Jason Brownlee, _A Gentle Introduction to the Sigmoid Function_, [Machine Learning Mastery](https://machinelearningmastery.com/a-gentle-introduction-to-sigmoid-function)
 
-Sigmoid Formula:
+**Sigmoid Formula:**
 
 \[
 \sigma(x) = \frac{1}{1 + e^{-x}}
 \]
 
 - S-shaped curve  
-- Flat tails (saturates at 0 and 1)  
+- Saturates at 0 and 1  
 - Centered at 0.5 for \(x = 0\)
 
-This signoid acitvation function Takes any real-valued input and map it to the range (0, 1). We can find the output is smooth and differentiable.
+The sigmoid activation maps any real-valued input to (0, 1). It is smooth and differentiable.
 
-Such sigmoid formula introduces the non-liearity to our neuron and has a clear derivative for easy training computing:
- \[
-  \sigma'(x) = \sigma(x)(1 - \sigma(x))
-  \]
+**Derivative:**
+\[
+\sigma'(x) = \sigma(x)(1 - \sigma(x))
+\]
 
-Conclusion:
-The non-linear activation function is what gives the neural network power to achieve impresively complex system that can map any value we want to the expected output.
+**Conclusion:**  
+Non-linear activation functions give neural networks the power to model complex relationships.
+
+---
 
 ## Experiment: NAND & XOR with a Sigmoid-Based Perceptron
-In this challenge, I digged into details about implementing a sigmoid-based perceptron and testing it on logic gates like NAND and XOR. All the code is placed into the code folder in a Jupyter notebook. This was also a vibe code practice for me to better learn from generative AI model. I atteched all my gpt inquire to form the code as below:
 
--I want to implement a signoid-based perceptron and test it around expression of NAND and XOR. Can you help me build the code into python? I want you show your code properly in process of how you build the dataset for each gate, how you build your function to train. Show me the training carve and the result compared with the expected truth table.
+I implemented a sigmoid-based perceptron and tested it on logic gates like NAND and XOR. All code is in the `code` folder (Jupyter notebook). This was also a great coding practice using generative AI.  
+I attached my GPT inquiry for code generation:
 
+> I want to implement a sigmoid-based perceptron and test it on NAND and XOR. Can you help me build the code in Python? Please show the process: dataset creation for each gate, training function, training curve, and results compared with the expected truth table.
 
+---
 
 ## Key Discoveries
-I successfully built and trained the NAND gate, but not the NOR gate.
 
-I then ask my gpt to futher this question:
- -Why? This is besides my expectation. I thought previously the Sigmoid-Based Perceptron is enough to show the non-liearity. So it is a single neuron problem right? It can only create line in the sapce?
+- Successfully built and trained the **NAND** gate, but **not the XOR** gate.
 
-gpt suggest:
-If you plot these points on a 2D graph, you’ll see:
+I then asked GPT:
 
-Points (0,1) and (1,0) are labeled as 1
+> Why? I thought a Sigmoid-Based Perceptron could show non-linearity. Is it a single neuron problem? Can it only create a line in space?
 
-Points (0,0) and (1,1) are labeled as 0
+**GPT explained:**
 
-There’s no single straight line (no linear boundary) that can separate the 1s from the 0s.
-This means it's not linearly separable.
+- If you plot the XOR truth table, you’ll see:
+  - (0,1) and (1,0) labeled as 1
+  - (0,0) and (1,1) labeled as 0
+- There’s **no single straight line** (linear boundary) that separates the 1s from the 0s.
+- The sigmoid activation is non-linear, but a single-layer perceptron (even with sigmoid) is limited to **linear decision boundaries**.
 
-The sigmoid activation function itself is non-linear, but a single-layer perceptron with sigmoid is still limited:
+To learn XOR, you need at least one hidden layer (a 2-layer neural network):
 
-It can only represent linear decision boundaries in the input space, even with sigmoid.
-
-So, sigmoid helps transform the data, but without layering, the model can't capture the more complex patterns needed for XOR. 
-
-To learn XOR, you need at least one hidden layer — this is known as a 2-layer neural network. You need more neurons in one layer to achieve non-linearity line.
-
-Example:
+**Example:**
+```
 Input Layer → Hidden Layer (non-linear) → Output Layer
-With this extra layer, the model can:
-Create intermediate non-linear features
-Combine them in a way that separates XOR correctly
+```
+- This allows the model to create intermediate non-linear features and combine them to separate XOR correctly.
 
-A single neuron, even with a sigmoid activation, can only create a **linear decision boundary** in the input space.
-
-In mathematical terms, the single neuron computes:
-
+**Mathematical Formulation (Single Neuron):**
 \[
 \text{Output} = \sigma(w_1 x_1 + w_2 x_2 + b)
 \]
+- This creates a linear boundary:  
+  \(w_1 x_1 + w_2 x_2 + b = 0\)
 
-This means it separates data based on a straight line in 2D space (or a **hyperplane** in higher dimensions), defined by:
-\[
-w_1 x_1 + w_2 x_2 + b = 0
-\]
-
-Let’s consider the **XOR truth table**:
+**XOR Truth Table:**
 
 | Input A | Input B | XOR Output |
 |---------|---------|------------|
@@ -143,19 +150,26 @@ Let’s consider the **XOR truth table**:
 | 1       | 0       | 1          |
 | 1       | 1       | 0          |
 
-If you plot these on a 2D plane, there's **no straight line** that can separate the `1`s from the `0`s.  
-This means XOR is **not linearly separable**, and a single neuron can't learn it.
+- No straight line can separate the 1s from the 0s.
+- XOR is **not linearly separable**; a single neuron can't learn it.
 
-To solve XOR, we need a **multi-layer perceptron (MLP)** — a neural network with **at least one hidden layer**.
+**Solution:**  
+A **multi-layer perceptron (MLP)** (at least one hidden layer) is needed. This enables:
+- Multiple linear boundaries
+- Non-linear activations between layers
+- Non-linear decision boundaries (curves)
 
-This allows the model to:
-- Combine multiple linear boundaries
-- Apply **non-linear activation** in between
-- Create **non-linear decision boundaries** like curves.
+---
 
-From chatting with GPT, I learned a lot about the importance of non-linearity in building stacked neurons — which helped me understand why we need neural networks in the first place. We need a multi-layer perceptron (MLP) to create non-linear decision boundaries in mathematical space, which empowers the model with the ability to map complex input-output relationships.
+## Summary & Takeaways
 
-To dive deeper into the XOR gate problem, I asked GPT to provide code for visualizing the final decision boundaries of a single-neuron model. Then, I extended the architecture by adding an additional neuron to form a two-layer neural network, which allowed the model to successfully learn the XOR logic gate. The full implementation is shown in the code folder.
+- **Non-linear design is critical** in neural network architecture.
+- Achieve non-linearity through:
+  - Multiple neurons in an MLP
+  - Non-linear activation functions (e.g., sigmoid)
+- A single neuron (even with sigmoid) can only create linear decision boundaries.
+- Multi-layer networks can model complex, non-linear relationships (like XOR).
 
-Key Takeaway from This Challenge:
-Non-linear design is critical in neural network architecture. We can achieve this non-linearity through multiple neurons in an MLP and through the use of non-linear activation functions like sigmoid.
+---
+
+*See the code folder for full implementation and visualizations.*

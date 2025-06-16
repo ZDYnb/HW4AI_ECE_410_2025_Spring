@@ -5,6 +5,7 @@
 # intro
 In this task, we are going to do the resistive crossbar. Crossbar is a hardware implementation for Neural Networks. fully analog Massively Parallel Multiply-and-Accumulate (MAC) design that we can benefit a lot from such design. Benefical can be from speed energy efficiency and totally scalable design. This challenge aims to build a LTspice simulation analog circuit for crossbar test.
 
+
 # Crossbar
 How is the design detail? Why it can be eneergy-effective? 
 
@@ -25,4 +26,8 @@ I2 = 0.002250 A
 I3 = 0.002367 A
 I4 = 0.002250 A
 
+
+The image below shows my LTspice simulation result for a 4×4 resistive crossbar performing analog parallel Multiply-and-Accumulate (MAC). Voltages V1 to V4 are the input vector, and currents I1 to I4 are the outputs. On the right, Python computes the product of the 4×1 input voltage vector and the 4×4 weight (conductance) matrix, verifying the correctness of the simulation.
+
+![LTspice and Python verification results](result_pic.png)
 

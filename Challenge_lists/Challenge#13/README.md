@@ -2,4 +2,4 @@
 **Eric Zhou**  
 **April 25, 2025**
 
-See Source code in Code folder
+See source code in the [Code/SAXPY_Cuda.ipynb](Code/SAXPY_Cuda.ipynb) file.

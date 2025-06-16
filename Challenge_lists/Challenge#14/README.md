@@ -7,4 +7,7 @@ the two preceding ones. It starts with 0 and 1, and continues as follows: 0, 1, 
 • F(1) = 1
 • F(n) = F(n-1) + F(n-2) for N-2 ³ n > 1
 • Compare a simple sequential implementation with your CUDA implementation. What do you
-observe?
+observe?  
+
+check my implementation and results in the [Code/Challenge#14.ipynb](../Code/Challenge#14.ipynb) notebook.
+
