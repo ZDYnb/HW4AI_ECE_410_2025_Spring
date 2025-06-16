@@ -32,7 +32,7 @@ By scaling down the design, I hoped to walk through the full design iteration �
 
 I also realized that even with GPT's help, I couldn’t make meaningful progress on large designs without solid ASIC fundamentals. GPT can assist with syntax, structure, and even some design ideas, but once things get complicated — especially in debugging — real hardware experience becomes essential.
 
-You can find the corresponding profiler notebook in the [`tiny_transformer.ipynb`](./Code/Progress/tiny_transformer.ipynb) file.
+You can find the corresponding profiler notebook in the [`tiny_transformer.ipynb`](tiny_transformer.ipynb) file.
 
 It documents the reasoning behind my scale-back decision, includes detailed profiling data for the simplified transformer block, and later served as a reference for both RTL module design and performance comparison.
 
