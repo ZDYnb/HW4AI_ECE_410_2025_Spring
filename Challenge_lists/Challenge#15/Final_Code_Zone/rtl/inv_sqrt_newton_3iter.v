@@ -368,11 +368,11 @@ always @(posedge clk or negedge rst_n) begin
         end
         
         // ================================================
-        // Stage 10: 透传数据 + 计算 variance × x2²
+        // Stage 10: Pass-through data + calculate variance × x2²
         // ================================================
         valid_stage[10] <= valid_stage[9];
         if (valid_stage[9]) begin
-            // 透传数据
+            // Pass-through data
             variance_stage[10] <= variance_stage[9];
             mean_stage[10] <= mean_stage[9];
             diff_stage10[0]  <= diff_stage9[0];  diff_stage10[1]  <= diff_stage9[1];
