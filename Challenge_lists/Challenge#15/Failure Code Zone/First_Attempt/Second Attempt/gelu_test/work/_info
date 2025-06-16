@@ -1,0 +1,170 @@
+m255
+K4
+z2
+Z0 !s12c _opt1
+Z1 !s99 nomlopt
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+Z2 !s12c _opt
+R1
+R2
+R1
+!s11f vlog 2024.2 2024.05, May 20 2024
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z3 d/u/ezhou/verilog/ece410/gelu_test
+T_opt
+!s110 1748561812
+Vz5U<;>Km]3>VZX30?NNXl3
+04 24 4 work tb_gelu_cubic_calculator fast 0
+=1-5254006cf05e-6838ef93-880d9-dec
+R1
+Z4 !s12f OEM100
+Z5 !s12b OEM100
+Z6 !s124 OEM100
+Z7 !s135 nogc
+Z8 o-quiet -auto_acc_if_foreign -work work
+Z9 tCvgOpt 0
+n@_opt
+Z10 OL;O;2024.2;79
+R3
+T_opt1
+!s110 1748572728
+VKH`ikbT6:OlYo@Mk87kOb3
+04 16 4 work tb_gelu_lut_unit fast 0
+=1-5254006cf05e-68391a38-15dc8-79c8
+R1
+R4
+R5
+R6
+R7
+R8
+R9
+n@_opt1
+R10
+vgelu_cubic_calculator
+Z11 2gelu_cubic_calculator.v|tb_gelu_cubic_calculator.v
+Z12 !s110 1748561809
+!i10b 1
+!s100 OZdm:7JTMFzfQ;=KA2OJb1
+I]zT_4EW4IaGFzSP>D4]B42
+R3
+w1748561791
+8gelu_cubic_calculator.v
+Fgelu_cubic_calculator.v
+!i122 2
+L0 10 109
+Z13 VDg1SIo80bB@j0V0VzS_@n1
+Z14 OL;L;2024.2;79
+r1
+!s85 0
+31
+Z15 !s108 1748561809.000000
+Z16 !s107 tb_gelu_cubic_calculator.v|gelu_cubic_calculator.v|
+Z17 !s90 gelu_cubic_calculator.v|tb_gelu_cubic_calculator.v|
+!i113 0
+Z18 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R9
+vgelu_lut_unit
+Z19 2gelu_lut_unit.v|tb_gelu_lut_unit.v
+Z20 !s110 1748572726
+!i10b 1
+!s100 PN_F:Z59nz`RX`6;O3nm50
+I[lL]kC4i<o:aVUj9LgkU83
+R3
+w1748572458
+8gelu_lut_unit.v
+Fgelu_lut_unit.v
+!i122 14
+L0 5 138
+R13
+R14
+r1
+!s85 0
+31
+Z21 !s108 1748572725.000000
+Z22 !s107 tb_gelu_lut_unit.v|gelu_lut_unit.v|
+Z23 !s90 gelu_lut_unit.v|tb_gelu_lut_unit.v|
+!i113 0
+R18
+R9
+vtb_debug_gelu_lut
+!s110 1748571214
+!i10b 1
+!s100 31Fo5GeFINXIKHmcME;eH1
+I8h<Qe05a6ZI?^E6hH_1^C1
+R3
+w1748571208
+8debug_gelu_lut.v
+Fdebug_gelu_lut.v
+!i122 4
+L0 99 69
+R13
+R14
+r1
+!s85 0
+31
+!s108 1748571213.000000
+!s107 debug_gelu_lut.v|
+!s90 debug_gelu_lut.v|
+!i113 0
+R18
+R9
+vtb_gelu_cubic_calculator
+R11
+R12
+!i10b 1
+!s100 1]HzD4]1ggKeaZk[fKPj[1
+Ib0<TiD`<k@UL1j?XY3>ec2
+R3
+w1748561485
+8tb_gelu_cubic_calculator.v
+Ftb_gelu_cubic_calculator.v
+!i122 2
+L0 10 178
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R9
+vtb_gelu_lut_unit
+R19
+R20
+!i10b 1
+!s100 c0HdRRUo<zLSlBnoBR5NF3
+I`fJGAnGDOC@GHl_ZDED823
+R3
+w1748572724
+8tb_gelu_lut_unit.v
+Ftb_gelu_lut_unit.v
+!i122 14
+L0 3 248
+R13
+R14
+r1
+!s85 0
+31
+R21
+R22
+R23
+!i113 0
+R18
+R9

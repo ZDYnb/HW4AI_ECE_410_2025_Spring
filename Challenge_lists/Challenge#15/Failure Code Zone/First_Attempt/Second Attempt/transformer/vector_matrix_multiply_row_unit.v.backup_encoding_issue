@@ -1,0 +1,205 @@
+// vector_matrix_multiply_row_unit.v
+module vector_matrix_multiply_row_unit #(
+    parameter DATA_WIDTH   = 8,    // Width of individual elements
+    parameter ACCUM_WIDTH  = 32,   // Width of dot product results (and output vector elements)
+    parameter K_DIM        = 4,    // Length of input vector A, and rows in Matrix W
+    parameter N_DIM        = 3     // Number of columns in Matrix W, and length of output vector O
+) (
+    input wire                          clk,
+    input wire                          rst_n,
+
+    input wire                          op_start, // Start the vector-matrix multiplication
+
+    // Parallel inputs for vector A and matrix W for this simplified version
+    input wire signed [DATA_WIDTH-1:0]  input_vector_A [0:K_DIM-1],
+    input wire signed [DATA_WIDTH-1:0]  weight_matrix_W [0:K_DIM-1][0:N_DIM-1], // [row][col]
+
+    output reg signed [ACCUM_WIDTH-1:0] output_vector_O [0:N_DIM-1], // Parallel output
+    output reg                          op_busy, // Driven by FSM combinational logic
+    output reg                          op_done      // Driven by FSM combinational logic
+);
+
+    // Internal registers to store latched inputs
+    reg signed [DATA_WIDTH-1:0]  internal_A_reg [0:K_DIM-1];
+    reg signed [DATA_WIDTH-1:0]  internal_W_reg [0:K_DIM-1][0:N_DIM-1];
+    // output_vector_O (declared as reg output) will serve as internal storage for results
+
+    // Signals for controlling and interfacing with the dot_product_unit
+    reg                               dp_start_pulse_reg; 
+    reg signed [DATA_WIDTH-1:0]       dp_vec_a_element_in_reg;
+    reg signed [DATA_WIDTH-1:0]       dp_vec_b_element_in_reg; 
+
+    wire signed [ACCUM_WIDTH-1:0]     dp_result_out_wire;
+    wire                              dp_result_valid_wire;
+    wire                              dp_busy_wire;
+    wire                              dp_request_next_elements_wire;
+
+    // Loop variables declared at module level for maximum compatibility
+    integer k, r, c, n;
+
+    // Instantiate the dot_product_unit
+    dot_product_unit #(
+        .DATA_WIDTH(DATA_WIDTH),
+        .ACCUM_WIDTH(ACCUM_WIDTH)
+    ) dp_inst (
+        .clk(clk),
+        .rst_n(rst_n),
+        .start(dp_start_pulse_reg),
+        .vector_length(K_DIM), 
+        .vec_a_element_in(dp_vec_a_element_in_reg),
+        .vec_b_element_in(dp_vec_b_element_in_reg),
+        .result_out(dp_result_out_wire),
+        .result_valid(dp_result_valid_wire),
+        .busy(dp_busy_wire),
+        .request_next_elements(dp_request_next_elements_wire)
+    );
+
+    // FSM State Definitions
+    localparam S_IDLE             = 4'd0;
+    localparam S_LATCH_INPUTS     = 4'd1;
+    localparam S_INIT_DP_COL      = 4'd2; 
+    localparam S_START_DP         = 4'd3; 
+    localparam S_FEED_DP_ELEMENTS = 4'd4; 
+    localparam S_STORE_DP_RESULT  = 4'd6; 
+    localparam S_ALL_COLS_DONE    = 4'd7; 
+
+    reg [3:0] current_state_reg, next_state_comb;
+
+    // Counters for loops
+    reg [$clog2(N_DIM)-1:0]      col_idx_j_reg;   
+    reg [$clog2(K_DIM)-1:0]      row_idx_i_reg;   
+
+
+    // FSM Sequential Part
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            current_state_reg <= S_IDLE;
+        end else begin
+            current_state_reg <= next_state_comb;
+        end
+    end
+
+    // FSM Combinational Part (and output logic)
+    always_comb begin
+        next_state_comb = current_state_reg; 
+        op_busy = (current_state_reg != S_IDLE && current_state_reg != S_ALL_COLS_DONE);
+        op_done = (current_state_reg == S_ALL_COLS_DONE);
+        dp_start_pulse_reg = 1'b0; 
+
+        dp_vec_a_element_in_reg = internal_A_reg[row_idx_i_reg];
+        dp_vec_b_element_in_reg = internal_W_reg[row_idx_i_reg][col_idx_j_reg];
+        
+        case (current_state_reg)
+            S_IDLE: begin
+                if (op_start) begin
+                    next_state_comb = S_LATCH_INPUTS;
+                end
+            end
+
+            S_LATCH_INPUTS: begin
+                next_state_comb = S_INIT_DP_COL;
+            end
+
+            S_INIT_DP_COL: begin 
+                if (col_idx_j_reg < N_DIM) begin
+                    next_state_comb = S_START_DP;
+                end else begin 
+                    next_state_comb = S_ALL_COLS_DONE;
+                end
+            end
+            
+            S_START_DP: begin 
+                dp_start_pulse_reg = 1'b1; 
+                next_state_comb = S_FEED_DP_ELEMENTS;
+            end
+
+            S_FEED_DP_ELEMENTS: begin
+                dp_start_pulse_reg = 1'b0; 
+
+                if (dp_result_valid_wire) begin 
+                    next_state_comb = S_STORE_DP_RESULT;
+                end else if (dp_busy_wire) begin 
+                    next_state_comb = S_FEED_DP_ELEMENTS;
+                end else if (!dp_busy_wire && !dp_result_valid_wire) {
+                    // This case implies dp_unit is idle but result wasn't caught.
+                    // For a robust design, this might indicate an issue if dp_unit was expected to be busy.
+                    // However, given dp_unit asserts result_valid for one cycle,
+                    // the primary transition should be via dp_result_valid_wire.
+                    // If dp_unit is idle and we are here, it means we missed the pulse,
+                    // or it finished before this FSM could react properly.
+                    // Staying in S_FEED_DP_ELEMENTS could lead to a deadlock.
+                    // A more robust FSM might need to handle this case more explicitly,
+                    // perhaps by checking if all elements were expected to be processed by dp_unit.
+                    // For now, assuming dp_result_valid_wire is the main trigger.
+                    next_state_comb = S_FEED_DP_ELEMENTS; 
+                }
+            end
+
+            S_STORE_DP_RESULT: begin 
+                next_state_comb = S_INIT_DP_COL; 
+            end
+
+            S_ALL_COLS_DONE: begin
+                next_state_comb = S_IDLE;
+            end
+            default: next_state_comb = S_IDLE;
+        endcase
+    end
+
+    // Datapath Sequential Logic
+    always @(posedge clk or negedge rst_n) begin
+        // Loop variables k, r, c, n are now declared at module level
+
+        if (!rst_n) begin
+            col_idx_j_reg <= {($clog2(N_DIM)){1'b0}};
+            row_idx_i_reg <= {($clog2(K_DIM)){1'b0}};
+            
+            for (k=0; k<K_DIM; k=k+1) begin
+                internal_A_reg[k] <= 0;
+            end
+            for (r=0; r<K_DIM; r=r+1) begin
+                for (c=0; c<N_DIM; c=c+1) begin
+                    internal_W_reg[r][c] <= 0;
+                end
+            end
+            for (n=0; n<N_DIM; n=n+1) begin
+                output_vector_O[n] <= 0;
+            end
+        end else begin
+            // Default assignments to hold values unless explicitly changed
+            col_idx_j_reg <= col_idx_j_reg;
+            row_idx_i_reg <= row_idx_i_reg;
+
+            if (current_state_reg == S_IDLE && next_state_comb == S_LATCH_INPUTS) begin
+                for (k=0; k<K_DIM; k=k+1) begin
+                    internal_A_reg[k] <= input_vector_A[k];
+                end
+                for (r=0; r<K_DIM; r=r+1) begin
+                    for (c=0; c<N_DIM; c=c+1) begin
+                        internal_W_reg[r][c] <= weight_matrix_W[r][c];
+                    end
+                end
+                col_idx_j_reg <= {($clog2(N_DIM)){1'b0}}; 
+            end
+
+            // Reset row_idx_i_reg when starting a new dot product for a new column
+            if ((next_state_comb == S_INIT_DP_COL && current_state_reg == S_STORE_DP_RESULT) ||
+                (next_state_comb == S_INIT_DP_COL && current_state_reg == S_LATCH_INPUTS)) begin 
+                 row_idx_i_reg <= {($clog2(K_DIM)){1'b0}};
+            end
+            
+            // Increment row_idx_i_reg when data is fed to DP unit based on its request
+            if (current_state_reg == S_FEED_DP_ELEMENTS && dp_request_next_elements_wire && row_idx_i_reg < K_DIM) begin
+                row_idx_i_reg <= row_idx_i_reg + 1;
+            end
+
+            // Store result and advance column index
+            if (current_state_reg == S_STORE_DP_RESULT) begin 
+                output_vector_O[col_idx_j_reg] <= dp_result_out_wire;
+                col_idx_j_reg <= col_idx_j_reg + 1;
+            end
+        end
+    end
+
+endmodule
+

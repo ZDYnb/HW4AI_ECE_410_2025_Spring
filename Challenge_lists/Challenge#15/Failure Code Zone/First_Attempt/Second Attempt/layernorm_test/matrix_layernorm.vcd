@@ -1,0 +1,37 @@
+$date
+	Thu Jun  5 23:49:26 2025
+$end
+$version
+	QuestaSim Version 2024.2
+$end
+$timescale
+	1ps
+$end
+
+$scope module testbench $end
+
+$scope task initialize_test_data $end
+$upscope $end
+
+$scope task pack_input_data $end
+$upscope $end
+
+$scope task unpack_output_data $end
+$upscope $end
+
+$scope task print_matrices $end
+$upscope $end
+
+$scope task verify_normalization $end
+$upscope $end
+
+$scope module dut $end
+
+$scope module layernorm_core $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+$end

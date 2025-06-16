@@ -1,0 +1,1 @@
+/pkgs/mentor/questa/2024.2/questasim/linux_x86_64/VisualizerRls/bin/viscom -nolock -quiet -jmem_size 393216 work.tb_systolic_array_core -quiet -auto_acc_if_foreign -work work -allow_unnamed -o _opt2 -id 1-5254006cf05e-683e98ba-3ac8a-73ae +__design_bin_path+/u/ezhou/verilog/ece410/systolic_array

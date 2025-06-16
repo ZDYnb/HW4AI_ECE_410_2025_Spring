@@ -1,0 +1,44 @@
+# vsim -c work.tb_systolic_array_core -do "run -all; quit -f" 
+# Start time: 23:39:53 on Jun 02,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Sim-64
+# //  Version 2024.2 linux_x86_64 May 20 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading work.tb_systolic_array_core(fast)
+# run -all
+# [0 ns] En:0 LdW:0 || POut0_flat[23:0]:0000 (V:0) POut1_flat[23:0]:0000 (V:0) || AOut0_flat[15:0]:000 AOut1_flat[15:0]:000
+# [20000 ns] TB: Reset Released.
+# [30000 ns] TB: Loading Weights...
+# [30000 ns] En:1 LdW:1 || POut0_flat[23:0]:0000 (V:0) POut1_flat[23:0]:0000 (V:0) || AOut0_flat[15:0]:000 AOut1_flat[15:0]:000
+# [40000 ns] TB: Weights Loaded.
+# [40000 ns] TB: Streaming A_tile and Psum_tile (Psum_in all zeros)...
+# [40000 ns] TB: Stream k_idx=          0: ActInFlat[0]=   10, ActInFlat[1]=   30. PsumInFlat[0]=       0, PsumInFlat[1]=       0
+# [40000 ns] En:1 LdW:0 || POut0_flat[23:0]:0000 (V:0) POut1_flat[23:0]:0000 (V:0) || AOut0_flat[15:0]:000 AOut1_flat[15:0]:000
+# [45000 ns] En:1 LdW:0 || POut0_flat[23:0]:0000 (V:1) POut1_flat[23:0]:0000 (V:1) || AOut0_flat[15:0]:000 AOut1_flat[15:0]:000
+# [50000 ns] TB: Stream k_idx=          1: ActInFlat[0]=   20, ActInFlat[1]=   40. PsumInFlat[0]=       0, PsumInFlat[1]=       0
+# [60000 ns] TB: Finished streaming A_tile. Waiting for outputs to propagate.
+# [65000 ns] En:1 LdW:0 || POut0_flat[23:0]:005a (V:1) POut1_flat[23:0]:0000 (V:1) || AOut0_flat[15:0]:000 AOut1_flat[15:0]:000
+# [75000 ns] En:1 LdW:0 || POut0_flat[23:0]:0078 (V:1) POut1_flat[23:0]:0000 (V:1) || AOut0_flat[15:0]:00a AOut1_flat[15:0]:01e
+# [85000 ns] En:1 LdW:0 || POut0_flat[23:0]:0000 (V:1) POut1_flat[23:0]:0078 (V:1) || AOut0_flat[15:0]:014 AOut1_flat[15:0]:028
+# [95000 ns] En:1 LdW:0 || POut0_flat[23:0]:000a (V:1) POut1_flat[23:0]:00a0 (V:1) || AOut0_flat[15:0]:000 AOut1_flat[15:0]:000
+# [105000 ns] En:1 LdW:0 || POut0_flat[23:0]:0014 (V:1) POut1_flat[23:0]:0000 (V:1) || AOut0_flat[15:0]:000 AOut1_flat[15:0]:000
+# [115000 ns] En:1 LdW:0 || POut0_flat[23:0]:0000 (V:1) POut1_flat[23:0]:0014 (V:1) || AOut0_flat[15:0]:000 AOut1_flat[15:0]:000
+# [120000 ns] TB: Disabling core_enable.
+# [120000 ns] En:0 LdW:0 || POut0_flat[23:0]:0000 (V:1) POut1_flat[23:0]:0014 (V:1) || AOut0_flat[15:0]:000 AOut1_flat[15:0]:000
+# [125000 ns] En:0 LdW:0 || POut0_flat[23:0]:0000 (V:0) POut1_flat[23:0]:0014 (V:0) || AOut0_flat[15:0]:000 AOut1_flat[15:0]:000
+# [140000 ns] TB: Testbench Finished.
+# ** Note: $finish    : tb_systolic_array_core.v(150)
+#    Time: 140 ns  Iteration: 0  Instance: /tb_systolic_array_core
+# End time: 23:39:55 on Jun 02,2025, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0

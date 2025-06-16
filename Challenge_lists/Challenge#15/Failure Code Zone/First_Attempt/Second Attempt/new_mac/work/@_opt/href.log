@@ -1,0 +1,16 @@
+BEGIN 1:mac_unit:fast:work
+    weight_in :  1:pe_tb:fast:work
+    accum_reg :  1:pe_tb:fast:work
+    data_in :  1:pe_tb:fast:work
+    mult_result_full :  1:pe_tb:fast:work
+    clear_accum :  1:pe_tb:fast:work
+    enable_mac :  1:pe_tb:fast:work
+    accum_valid_reg :  1:pe_tb:fast:work
+END 
+BEGIN 1:processing_element:fast:work
+    data_reg :  1:pe_tb:fast:work
+    weight_valid_reg :  1:pe_tb:fast:work
+    weight_reg :  1:pe_tb:fast:work
+    pe_clear_accum_reg :  1:pe_tb:fast:work
+    data_valid_reg :  1:pe_tb:fast:work
+END 

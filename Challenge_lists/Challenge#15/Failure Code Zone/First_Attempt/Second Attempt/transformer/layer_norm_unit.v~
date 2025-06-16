@@ -1,0 +1,324 @@
+// layer_norm_unit.v
+module layer_norm_unit #(
+    parameter FEATURE_DIM         = 768, 
+    parameter DATA_WIDTH          = 16,  // e.g., Q4.12 signed (1S, 3I, 12F)
+    parameter PARAM_WIDTH         = 16,  // For gamma, beta (e.g., Q4.12 signed)
+
+    // For sum_x: Max value FEATURE_DIM * 2^(DATA_INT_BITS). Needs enough integer bits.
+    // If DATA_WIDTH is Q4.12, integer bits = 3. Max element value approx 2^3 = 8.
+    // Sum integer bits = 3 (from data) + $clog2(FEATURE_DIM) (e.g., 10 for 768) = 13. Add sign: 14.
+    // Total SUM_WIDTH = 1 (sign) + 13 (int) + 12 (frac) = 26. Let's use 32.
+    parameter SUM_WIDTH           = 32,  
+
+    // For sum_x_sq: x_i^2 is (Q4.12)^2 -> Q8.24. Max element value^2 approx (2^3)^2 = 2^6 = 64.
+    // Sum_sq integer bits = 6 (from data_sq) + $clog2(FEATURE_DIM) = 6 + 10 = 16. Add sign: 17.
+    // Total SUM_SQ_WIDTH = 1 (sign) + 16 (int) + 24 (frac) = 41. Let's use 48.
+    parameter SUM_SQ_WIDTH        = 48,  
+
+    parameter MEAN_WIDTH          = DATA_WIDTH, 
+    parameter VAR_INTERNAL_WIDTH  = SUM_SQ_WIDTH, // For variance before sqrt, to maintain precision
+    parameter NORM_FACTOR_WIDTH   = 18,  // For 1/sqrt(var+eps) (e.g., Q2.16 signed, mostly fractional)
+
+    // These need to be calculated based on the chosen Qm.n formats.
+    // Example for FEATURE_DIM=768, 1/768. To represent in Q0.16: round((1.0/768.0)*(1<<16)) = 85
+    parameter RECIP_N_VALUE_Q16   = ((1 << 16) / FEATURE_DIM), 
+    // Example: Epsilon = 1e-5. If variance is Qx.24, EPSILON needs to match that scale.
+    // 1e-5 * (1<<24) = 167. For Qx.SUM_SQ_FRAC_BITS
+    parameter EPSILON_FIXED_POINT = 1, // Placeholder, must be scaled to variance's fractional bits
+
+    parameter INV_SQRT_LATENCY    = 10  // Placeholder latency for an inv_sqrt sub-unit
+) (
+    input wire clk,
+    input wire rst_n,
+    input wire op_start,
+
+    input wire signed [DATA_WIDTH-1:0]  input_vector [0:FEATURE_DIM-1],
+    input wire signed [PARAM_WIDTH-1:0] gamma_vector [0:FEATURE_DIM-1],
+    input wire signed [PARAM_WIDTH-1:0] beta_vector  [0:FEATURE_DIM-1],
+
+    output reg signed [DATA_WIDTH-1:0] output_vector [0:FEATURE_DIM-1],
+    output reg op_busy,
+    output reg op_done
+);
+
+    localparam COUNTER_WIDTH = $clog2(FEATURE_DIM);
+    // Pipeline depths (example values, actual depth depends on stages)
+    localparam P1_SUM_PIPE_DEPTH = 2; 
+    localparam P2_NORM_PIPE_DEPTH = 4; 
+
+    // FSM State Definitions
+    localparam S_IDLE                      = 5'd0;
+    // S_LATCH_INPUTS might not be needed if we assume inputs are in BRAMs accessible by index
+    localparam S_CALC_SUMS_INIT            = 5'd1; 
+    localparam S_CALC_SUMS_LOOP            = 5'd2; // Iterates FEATURE_DIM times to fill sum pipeline
+    localparam S_CALC_SUMS_DRAIN           = 5'd3; // Drains sum pipeline
+    localparam S_CALC_MEAN_VAR_START       = 5'd4; 
+    localparam S_CALC_MEAN_VAR_WAIT        = 5'd5; // If mean/var calculation is multi-cycle
+    localparam S_CALC_INV_SQRT_START       = 5'd6; 
+    localparam S_CALC_INV_SQRT_WAIT        = 5'd7; 
+    localparam S_NORM_INIT                 = 5'd8; 
+    localparam S_NORM_LOOP                 = 5'd9; // Iterates FEATURE_DIM times to fill norm pipeline
+    localparam S_NORM_DRAIN                = 5'd10; // Drains norm pipeline
+    localparam S_DONE                      = 5'd11; 
+
+    reg [4:0] current_state_reg, next_state_comb;
+
+    // --- Datapath Registers ---
+    reg [COUNTER_WIDTH-1:0]            idx_counter_reg; // Main index for FEATURE_DIM
+    reg [$clog2(P1_SUM_PIPE_DEPTH+1)-1:0]  p1_drain_counter_reg;
+    reg [$clog2(P2_NORM_PIPE_DEPTH+1)-1:0]  p2_drain_counter_reg;
+
+    // Phase 1 registers (Summation)
+    reg signed [SUM_WIDTH-1:0]         sum_x_acc_reg;
+    reg signed [SUM_SQ_WIDTH-1:0]      sum_x_sq_acc_reg;
+    
+    // Pipeline registers for Pass 1 (summation pipeline)
+    reg signed [DATA_WIDTH-1:0]        p1_x_s0_reg;      // x[i] read from input_vector
+    reg signed [DATA_WIDTH-1:0]        p1_x_s1_reg;      // Registered x[i] for sum
+    reg signed [(2*DATA_WIDTH)-1:0]    p1_x_sq_s1_reg;   // Registered x[i]*x[i] (before accumulation scaling)
+
+    // Phase 2 registers (Mean, Variance, Norm Factor)
+    reg signed [MEAN_WIDTH-1:0]        mean_reg;         // Scaled to DATA_WIDTH format
+    reg signed [VAR_INTERNAL_WIDTH-1:0] variance_plus_epsilon_reg; 
+    reg signed [NORM_FACTOR_WIDTH-1:0] norm_factor_reg;
+    reg [COUNTER_WIDTH-1:0]            inv_sqrt_wait_counter_reg;
+
+    // Pipeline registers for Pass 2 (Normalization pipeline)
+    // Stage 0 (Fetch)
+    reg signed [DATA_WIDTH-1:0]        p2_x_s0_reg;
+    reg signed [PARAM_WIDTH-1:0]       p2_gamma_s0_reg;
+    reg signed [PARAM_WIDTH-1:0]       p2_beta_s0_reg;
+    // Stage 1 (x - mean)
+    reg signed [DATA_WIDTH:0]          p2_centered_x_s1_reg; // Wider for potential intermediate growth
+    reg signed [PARAM_WIDTH-1:0]       p2_gamma_s1_reg;
+    reg signed [PARAM_WIDTH-1:0]       p2_beta_s1_reg;
+    // Stage 2 (... * norm_factor)
+    reg signed [DATA_WIDTH+NORM_FACTOR_WIDTH-1:0] p2_normalized_x_s2_reg; // Product width
+    reg signed [PARAM_WIDTH-1:0]       p2_gamma_s2_reg;
+    reg signed [PARAM_WIDTH-1:0]       p2_beta_s2_reg;
+    // Stage 3 (... * gamma)
+    reg signed [DATA_WIDTH+NORM_FACTOR_WIDTH+PARAM_WIDTH-1:0] p2_scaled_x_s3_reg; // Product width
+    reg signed [PARAM_WIDTH-1:0]       p2_beta_s3_reg;
+    // Stage 4 (... + beta) -> output directly or to an output register
+
+    // --- FSM Sequential Logic (State Register) ---
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            current_state_reg <= S_IDLE;
+        end else begin
+            current_state_reg <= next_state_comb;
+        end
+    end
+
+    // --- FSM Combinational Logic (Next State and Output Control) ---
+    always_comb begin
+        next_state_comb = current_state_reg; 
+        op_busy         = (current_state_reg != S_IDLE && current_state_reg != S_DONE);
+        op_done         = (current_state_reg == S_DONE);
+        
+        // Default control signals (to be asserted in specific states)
+        // logic load_x_s0, update_sum_acc, update_norm_pipe_stage1 ... etc.
+
+        case (current_state_reg)
+            S_IDLE: begin
+                if (op_start) next_state_comb = S_CALC_SUMS_INIT; // Assuming inputs are ready/BRAMs
+            end
+            S_CALC_SUMS_INIT: begin
+                next_state_comb = S_CALC_SUMS_LOOP;
+            end
+            S_CALC_SUMS_LOOP: begin
+                if (idx_counter_reg < FEATURE_DIM) begin // Check if still feeding the pipeline
+                    next_state_comb = S_CALC_SUMS_LOOP;
+                end else begin // All elements fed, now drain
+                    next_state_comb = S_CALC_SUMS_DRAIN;
+                end
+            end
+            S_CALC_SUMS_DRAIN: begin
+                if (p1_drain_counter_reg == 0) begin // Pipeline drained
+                    next_state_comb = S_CALC_MEAN_VAR_START;
+                end else begin
+                    next_state_comb = S_CALC_SUMS_DRAIN;
+                end
+            end
+            S_CALC_MEAN_VAR_START: begin
+                // Trigger mean/var calculation (may take multiple cycles)
+                next_state_comb = S_CALC_MEAN_VAR_WAIT; // Assume it's multi-cycle
+            end
+            S_CALC_MEAN_VAR_WAIT: begin
+                // if (mean_var_calculation_is_done_signal) begin
+                     next_state_comb = S_CALC_INV_SQRT_START;
+                // end else next_state_comb = S_CALC_MEAN_VAR_WAIT;
+            end
+            S_CALC_INV_SQRT_START: begin
+                next_state_comb = S_CALC_INV_SQRT_WAIT;
+            end
+            S_CALC_INV_SQRT_WAIT: begin
+                if (inv_sqrt_wait_counter_reg == 0) begin
+                     next_state_comb = S_NORM_INIT;
+                end else begin
+                     next_state_comb = S_CALC_INV_SQRT_WAIT;
+                end
+            end
+            S_NORM_INIT: begin
+                next_state_comb = S_NORM_LOOP;
+            end
+            S_NORM_LOOP: begin
+                if (idx_counter_reg < FEATURE_DIM) begin // Check if still feeding norm pipeline
+                    next_state_comb = S_NORM_LOOP;
+                end else begin // All elements fed, now drain
+                    next_state_comb = S_NORM_DRAIN;
+                end
+            end
+            S_NORM_DRAIN: begin
+                if (p2_drain_counter_reg == 0) begin // Pipeline drained
+                    next_state_comb = S_DONE;
+                end else begin
+                    next_state_comb = S_NORM_DRAIN;
+                end
+            end
+            S_DONE: begin
+                next_state_comb = S_IDLE;
+            end
+            default: next_state_comb = S_IDLE;
+        endcase
+    end
+
+    // --- Datapath Sequential Logic (Registers update here) ---
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            idx_counter_reg <= 0;
+            p1_drain_counter_reg <= 0;
+            p2_drain_counter_reg <= 0;
+            sum_x_acc_reg <= 0;
+            sum_x_sq_acc_reg <= 0;
+            mean_reg <= 0;
+            variance_plus_epsilon_reg <= 0;
+            norm_factor_reg <= 0;
+            inv_sqrt_wait_counter_reg <= 0;
+
+            p1_x_s0_reg <= 0; p1_x_s1_reg <= 0; p1_x_sq_s1_reg <= 0;
+            // Reset other pipeline registers...
+            for (int i=0; i<FEATURE_DIM; i=i+1) output_vector[i] <= 0;
+        end else begin
+            // S_CALC_SUMS_INIT
+            if (next_state_comb == S_CALC_SUMS_INIT && current_state_reg != S_CALC_SUMS_INIT) begin // On entry
+                sum_x_acc_reg <= 0;
+                sum_x_sq_acc_reg <= 0;
+                idx_counter_reg <= 0;
+                p1_drain_counter_reg <= P1_SUM_PIPE_DEPTH;
+            end
+
+            // S_CALC_SUMS_LOOP (Pipeline for Summation)
+            if (current_state_reg == S_CALC_SUMS_LOOP && idx_counter_reg < FEATURE_DIM) begin
+                p1_x_s0_reg <= input_vector[idx_counter_reg]; // Stage 0: Fetch
+                idx_counter_reg <= idx_counter_reg + 1;
+            end
+            // Stage 1 of sum pipeline (assuming it's always running when sum loop active)
+            p1_x_s1_reg <= p1_x_s0_reg; 
+            // Implement proper fixed-point multiplication:
+            // p1_x_sq_s1_reg <= scaled_multiply(p1_x_s0_reg, p1_x_s0_reg); 
+            p1_x_sq_s1_reg <= p1_x_s0_reg * p1_x_s0_reg; // Conceptual
+            
+            // Stage 2 of sum pipeline (Accumulation)
+            // These accumulations happen continuously while new data is fetched, for P1_SUM_PIPE_DEPTH cycles
+            // This simplified model assumes accumulation happens one cycle after squaring.
+            // A real pipeline needs careful enable/valid signals.
+            if (current_state_reg == S_CALC_SUMS_LOOP || current_state_reg == S_CALC_SUMS_DRAIN) begin // Accumulate during loop and drain
+                // Assuming p1_x_s1_reg and p1_x_sq_s1_reg are valid results from previous stage
+                // This needs valid flags from pipeline stages if depth > 1 for accumulation part
+                sum_x_acc_reg <= sum_x_acc_reg + p1_x_s1_reg; 
+                sum_x_sq_acc_reg <= sum_x_sq_acc_reg + p1_x_sq_s1_reg;
+            end
+
+            if (current_state_reg == S_CALC_SUMS_DRAIN && p1_drain_counter_reg > 0) begin
+                p1_drain_counter_reg <= p1_drain_counter_reg - 1;
+                // Continue clocking pipeline registers to flush them
+                 p1_x_s0_reg <= 0; // Feed zeros or invalid
+                 // sum_x_acc_reg and sum_x_sq_acc_reg continue accumulating flushed values
+            end
+
+            // S_CALC_MEAN_VAR_START & S_CALC_MEAN_VAR_WAIT
+            if (current_state_reg == S_CALC_MEAN_VAR_START) begin
+                // Placeholder for multi-cycle fixed-point calculation:
+                // mean_reg <= (sum_x_acc_reg * RECIP_N_VALUE) >> appropriate_shift_for_Qformat;
+                // temp_var = (sum_x_sq_acc_reg * RECIP_N_VALUE) - (mean_reg * mean_reg)
+                // variance_plus_epsilon_reg <= temp_var + EPSILON_VALUE; 
+                // For now, conceptual direct assignment (assuming single cycle for simplicity)
+                mean_reg <= sum_x_acc_reg / FEATURE_DIM; // Needs proper fixed-point division
+                variance_plus_epsilon_reg <= (sum_x_sq_acc_reg / FEATURE_DIM) - (mean_reg * mean_reg) + EPSILON_FIXED_POINT; // Needs proper fixed-point
+            end
+
+            // S_CALC_INV_SQRT_START & S_CALC_INV_SQRT_WAIT
+            if (current_state_reg == S_CALC_INV_SQRT_START) begin
+                inv_sqrt_wait_counter_reg <= INV_SQRT_LATENCY -1; // Start counter
+                // Trigger conceptual inv_sqrt unit with variance_plus_epsilon_reg
+            end
+            if (current_state_reg == S_CALC_INV_SQRT_WAIT && inv_sqrt_wait_counter_reg > 0) begin
+                inv_sqrt_wait_counter_reg <= inv_sqrt_wait_counter_reg - 1;
+            end
+            if (current_state_reg == S_CALC_INV_SQRT_WAIT && inv_sqrt_wait_counter_reg == 0 && next_state_comb == S_NORM_INIT) begin // Check if inv_sqrt_wait_counter_reg was the trigger
+                norm_factor_reg <= NORM_FACTOR_WIDTH'(1.0); // Placeholder: get actual inv_sqrt result
+            end
+            
+            // S_NORM_INIT
+            if (next_state_comb == S_NORM_INIT && current_state_reg != S_NORM_INIT) begin // On entry
+                idx_counter_reg <= 0;
+                p2_drain_counter_reg <= P2_NORM_PIPE_DEPTH;
+            end
+
+            // S_NORM_LOOP (Pipelined Normalization, Scale, Shift)
+            // Stage 0: Fetch
+            if (current_state_reg == S_NORM_LOOP && idx_counter_reg < FEATURE_DIM) begin
+                p2_x_s0_reg     <= input_vector[idx_counter_reg];
+                p2_gamma_s0_reg <= gamma_vector[idx_counter_reg];
+                p2_beta_s0_reg  <= beta_vector[idx_counter_reg];
+                idx_counter_reg <= idx_counter_reg + 1;
+            end
+            // Stage 1: x - mean
+            p2_centered_x_s1_reg <= p2_x_s0_reg - mean_reg;
+            p2_gamma_s1_reg      <= p2_gamma_s0_reg;
+            p2_beta_s1_reg       <= p2_beta_s0_reg;
+            // Stage 2: ... * norm_factor
+            p2_normalized_x_s2_reg <= p2_centered_x_s1_reg * norm_factor_reg; // Needs fixed-point scaling
+            p2_gamma_s2_reg        <= p2_gamma_s1_reg;
+            p2_beta_s2_reg         <= p2_beta_s1_reg;
+            // Stage 3: ... * gamma
+            p2_scaled_x_s3_reg     <= p2_normalized_x_s2_reg * p2_gamma_s2_reg; // Needs fixed-point scaling
+            p2_beta_s3_reg         <= p2_beta_s2_reg;
+            // Stage 4: ... + beta & Write Output
+            // Output write index needs to be delayed according to pipeline depth
+            // Example: if idx_counter_reg is current fetch index, output write index is idx_counter_reg - P2_NORM_PIPE_DEPTH
+            // This needs careful handling with valid flags through the pipeline or a write address counter.
+            // Simplified: assume output_vector[idx_counter_reg - P2_NORM_PIPE_DEPTH] if valid data is exiting
+            // This part needs more robust pipelined write logic.
+            // For now, write based on current idx from S_NORM_APPLY4 state if FSM was broken down further
+            // With current FSM, this write happens when the loop finishes.
+            // A better way is to write continuously as data exits the norm pipeline.
+            // For this example, let's assume write happens when FSM is in S_NORM_LOOP and appropriate delayed index valid.
+            // This specific assignment is problematic without proper pipeline flush/valid tracking.
+            // Let's defer exact output_vector assignment until a clearer understanding of fixed-point pipeline.
+
+            if (current_state_reg == S_NORM_DRAIN && p2_drain_counter_reg > 0) begin
+                p2_drain_counter_reg <= p2_drain_counter_reg - 1;
+                // Continue clocking norm pipeline with invalid data to flush
+                p2_x_s0_reg <= 0; 
+                // Output write for flushed data
+                 if (idx_counter_reg - (P2_NORM_PIPE_DEPTH - p2_drain_counter_reg) >= 0 && 
+                     idx_counter_reg - (P2_NORM_PIPE_DEPTH - p2_drain_counter_reg) < FEATURE_DIM) begin
+                    // This indexing logic is complex and indicative of needing clearer pipeline stage valid flags.
+                    // output_vector[idx_counter_reg - (P2_NORM_PIPE_DEPTH - p2_drain_counter_reg)] <= ... result from pipeline ...;
+                 end
+            end
+            
+            // The actual output_vector assignment should be done cycle by cycle as data exits the norm pipeline
+            // This requires passing valid element data through the p2_ pipeline stages.
+            // For instance, if S_NORM_APPLY4 was its own state:
+            // if (current_state_reg == S_NORM_APPLY4_EQUIVALENT_STATE && valid_data_at_pipe_exit) begin
+            //    output_vector[write_idx] <= p2_scaled_x_s3_reg_final + p2_beta_s3_reg_final;
+            // end
+
+
+        end
+    end
+
+endmodule

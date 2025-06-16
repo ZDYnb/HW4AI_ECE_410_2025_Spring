@@ -1,0 +1,1 @@
+/pkgs/mentor/questa/2024.2/questasim/linux_x86_64/VisualizerRls/bin/viscom -nolock -quiet -jmem_size 393216 work.test_systolic_output_format -quiet -auto_acc_if_foreign -work work -allow_unnamed -o _opt2 -id 1-5254006cf05e-6840c69c-de4b5-230e +__design_bin_path+/u/ezhou/verilog/ece410/mut

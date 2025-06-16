@@ -1,0 +1,936 @@
+m255
+K4
+z2
+Z0 !s12c _opt
+Z1 !s99 nomlopt
+Z2 !s12c _opt1
+R1
+Z3 !s12c _opt2
+R1
+R0
+R1
+R2
+R1
+R3
+R1
+R3
+R1
+R2
+R1
+R2
+R1
+R0
+R1
+R3
+R1
+R2
+R1
+R0
+R1
+R3
+R1
+R2
+R1
+R0
+R1
+R3
+R1
+R2
+R1
+R0
+R1
+R3
+R1
+R2
+R1
+R0
+R1
+!s11f vlog 2024.2 2024.05, May 20 2024
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z4 d/u/ezhou/verilog/ece410/systolic_design
+T_opt
+!s110 1748403432
+VTFckm[5I3hiC8YPa044gV3
+04 14 4 work debug_element3 fast 0
+=1-5254006cf05e-683684e8-16075-6cc0
+R1
+Z5 !s12f OEM100
+Z6 !s12b OEM100
+Z7 !s124 OEM100
+Z8 !s135 nogc
+Z9 o-quiet -auto_acc_if_foreign -work work
+Z10 tCvgOpt 0
+n@_opt
+Z11 OL;O;2024.2;79
+R4
+T_opt1
+!s110 1748403292
+VVM5A0i`iic6RN=;KRze;33
+04 20 4 work tb_wrapper_corrected fast 0
+=1-5254006cf05e-6836845b-8150c-5d96
+R1
+R5
+R6
+R7
+R8
+R9
+R10
+n@_opt1
+R11
+R4
+vdebug_data_count
+Z12 2spi_controller_fixed.v|complete_spi_fix.v|debug_data_count.v
+Z13 !s110 1748400793
+!i10b 1
+!s100 lLJ;_^WEgXMW;>U^M=K=S1
+I]@3Yk<UkDg[@3k@Oc:A9G2
+R4
+w1748400793
+8debug_data_count.v
+Fdebug_data_count.v
+!i122 9
+L0 3 75
+Z14 VDg1SIo80bB@j0V0VzS_@n1
+Z15 OL;L;2024.2;79
+r1
+!s85 0
+31
+Z16 !s108 1748400793.000000
+Z17 !s107 debug_data_count.v|complete_spi_fix.v|spi_controller_fixed.v|
+Z18 !s90 spi_controller_fixed.v|complete_spi_fix.v|debug_data_count.v|
+!i113 0
+Z19 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R10
+vdebug_element3
+Z20 2systolic_array_fsm_design.v|parallel_interface_wrapper_final.v|debug_element3.v
+Z21 !s110 1748403429
+!i10b 1
+!s100 c>50h@9NY;mZZ;1Z9OeQb3
+I^29lShAJmRGof2^k70VFC1
+R4
+w1748403429
+8debug_element3.v
+Fdebug_element3.v
+!i122 25
+L0 3 94
+R14
+R15
+r1
+!s85 0
+31
+Z22 !s108 1748403429.000000
+Z23 !s107 debug_element3.v|parallel_interface_wrapper_final.v|systolic_array_fsm_design.v|
+Z24 !s90 systolic_array_fsm_design.v|parallel_interface_wrapper_final.v|debug_element3.v|
+!i113 0
+R19
+R10
+vdebug_parallel_fixed
+2systolic_array_fsm_design.v|parallel_interface_wrapper_final.v|debug_parallel_fixed.v
+!s110 1748402875
+!i10b 1
+!s100 M8eIY=h^<]53bPUmZaLaB2
+Id0MSL_k=3m@5TMVdE_?b73
+R4
+w1748402736
+8debug_parallel_fixed.v
+Fdebug_parallel_fixed.v
+!i122 19
+L0 3 88
+R14
+R15
+r1
+!s85 0
+31
+!s108 1748402875.000000
+!s107 debug_parallel_fixed.v|parallel_interface_wrapper_final.v|systolic_array_fsm_design.v|
+!s90 systolic_array_fsm_design.v|parallel_interface_wrapper_final.v|debug_parallel_fixed.v|
+!i113 0
+R19
+R10
+vdebug_spi_read
+2systolic_array_fsm_design.v|spi_systolic_wrapper.v|debug_spi_read.v
+!s110 1748400339
+!i10b 1
+!s100 E;zTm65iPTY[XS58TX97n2
+I6mEFOSG_?aBMaR3e]XOG13
+R4
+w1748400339
+8debug_spi_read.v
+Fdebug_spi_read.v
+!i122 5
+L0 7 106
+R14
+R15
+r1
+!s85 0
+31
+!s108 1748400339.000000
+!s107 debug_spi_read.v|spi_systolic_wrapper.v|systolic_array_fsm_design.v|
+!s90 systolic_array_fsm_design.v|spi_systolic_wrapper.v|debug_spi_read.v|
+!i113 0
+R19
+R10
+vdetailed_spi_debug
+Z25 2systolic_array_fsm_design.v|spi_systolic_wrapper.v|spi_detailed_debug.v
+Z26 !s110 1748398760
+!i10b 1
+!s100 ^Tgf71WEhPc6Z5i;9RD:?1
+I`f0QjASU9d^[QU3>f;DUz3
+R4
+w1748398371
+8spi_detailed_debug.v
+Fspi_detailed_debug.v
+!i122 0
+L0 3 69
+R14
+R15
+r1
+!s85 0
+31
+Z27 !s108 1748398760.000000
+Z28 !s107 spi_detailed_debug.v|spi_systolic_wrapper.v|systolic_array_fsm_design.v|
+Z29 !s90 systolic_array_fsm_design.v|spi_systolic_wrapper.v|spi_detailed_debug.v|
+!i113 0
+R19
+R10
+vfinal_debug
+2final_debug.v
+!s110 1748403135
+!i10b 1
+!s100 j5L]z[41<imB80cQZ^T@80
+I3KY4]k87;[Di2CD0=X9^g3
+R4
+w1748403135
+8final_debug.v
+Ffinal_debug.v
+!i122 23
+L0 3 25
+R14
+R15
+r1
+!s85 0
+31
+!s108 1748403135.000000
+!s107 final_debug.v|
+!s90 final_debug.v|
+!i113 0
+R19
+R10
+vmac_unit_basic
+R20
+R21
+!i10b 1
+!s100 E6Zk@LzaKKU35;aD:T9bW1
+I;mTX_B90SM9EWbROGz86f2
+R4
+Z30 w1748377246
+Z31 8systolic_array_fsm_design.v
+Z32 Fsystolic_array_fsm_design.v
+!i122 25
+L0 554 49
+R14
+R15
+r1
+!s85 0
+31
+R22
+R23
+R24
+!i113 0
+R19
+R10
+vprocessing_element
+R20
+R21
+!i10b 1
+!s100 LVf>^MXnG:_de6dW;W4Z?3
+IzHUIC`XG09:bJ038<PXNg1
+R4
+R30
+R31
+R32
+!i122 25
+L0 468 82
+R14
+R15
+r1
+!s85 0
+31
+R22
+R23
+R24
+!i113 0
+R19
+R10
+vsimple_parallel_test_fixed
+2systolic_array_fsm_design.v|parallel_interface_wrapper_final.v|simple_parallel_test_fixed.v
+!s110 1748403075
+!i10b 1
+!s100 c65E^OQVBO[589m[IiLhb1
+Idj?OiA_8@Fh:zAPGJ@BPB0
+R4
+w1748403075
+8simple_parallel_test_fixed.v
+Fsimple_parallel_test_fixed.v
+!i122 22
+L0 3 105
+R14
+R15
+r1
+!s85 0
+31
+!s108 1748403075.000000
+!s107 simple_parallel_test_fixed.v|parallel_interface_wrapper_final.v|systolic_array_fsm_design.v|
+!s90 systolic_array_fsm_design.v|parallel_interface_wrapper_final.v|simple_parallel_test_fixed.v|
+!i113 0
+R19
+R10
+vspi_cdc_test
+2spi_cdc_fixed.v
+!s110 1748399383
+!i10b 1
+!s100 Ck@om^;oEOZI]am7hhELR2
+IC]WXPlKB?_T7z1Gn8=@[J0
+R4
+w1748399383
+8spi_cdc_fixed.v
+Fspi_cdc_fixed.v
+!i122 3
+L0 3 153
+R14
+R15
+r1
+!s85 0
+31
+!s108 1748399383.000000
+!s107 spi_cdc_fixed.v|
+!s90 spi_cdc_fixed.v|
+!i113 0
+R19
+R10
+vspi_command_controller
+R25
+R26
+!i10b 1
+!s100 X5o;5T>;ko;OfS>TFE3D`0
+IZ9ULXdlFIJLBBSDAzOnGd1
+R4
+Z33 w1748398716
+Z34 8spi_systolic_wrapper.v
+Z35 Fspi_systolic_wrapper.v
+!i122 0
+L0 78 266
+R14
+R15
+r1
+!s85 0
+31
+R27
+R28
+R29
+!i113 0
+R19
+R10
+vspi_command_controller_final
+Z36 2systolic_array_fsm_design.v|spi_systolic_wrapper.v|spi_read_fix.v
+Z37 !s110 1748400436
+!i10b 1
+!s100 k9LCFz@]^UYTSon]:BR^z3
+IECd;BL<^0P2PU5Kj@CB5<1
+R4
+Z38 w1748400125
+R34
+R35
+!i122 6
+L0 100 280
+R14
+R15
+r1
+!s85 0
+31
+Z39 !s108 1748400436.000000
+Z40 !s107 spi_read_fix.v|spi_systolic_wrapper.v|systolic_array_fsm_design.v|
+Z41 !s90 systolic_array_fsm_design.v|spi_systolic_wrapper.v|spi_read_fix.v|
+!i113 0
+R19
+R10
+vspi_command_controller_final_fix
+Z42 2spi_read_final_fix.v|complete_spi_fix.v|final_complete_test.v
+Z43 !s110 1748400997
+!i10b 1
+!s100 TGgj2lUZ^<ED1;nR7S6VO0
+IKTBmdTeM`eOoVbY[EJHlP0
+R4
+Z44 w1748400916
+Z45 8spi_read_final_fix.v
+Z46 Fspi_read_final_fix.v
+!i122 11
+L0 11 290
+R14
+R15
+r1
+!s85 0
+31
+Z47 !s108 1748400997.000000
+Z48 !s107 final_complete_test.v|complete_spi_fix.v|spi_read_final_fix.v|
+Z49 !s90 spi_read_final_fix.v|complete_spi_fix.v|final_complete_test.v|
+!i113 0
+R19
+R10
+vspi_command_controller_fixed
+R12
+R13
+!i10b 1
+!s100 Xk]50]YaHb>Z_KjeOO@2Y3
+Ib6BBD<fI9Gd@I=3Q>SRWP3
+R4
+Z50 w1748400608
+8spi_controller_fixed.v
+Fspi_controller_fixed.v
+!i122 9
+Z51 L0 7 281
+R14
+R15
+r1
+!s85 0
+31
+R16
+R17
+R18
+!i113 0
+R19
+R10
+vspi_command_controller_working
+Z52 2spi_final_working.v|complete_spi_fix.v
+Z53 !s110 1748401249
+!i10b 1
+!s100 9laQVOG`V8^F=Y`QnXiPb1
+I4?`1HJ=i8o9GdGahcR4<n3
+R4
+Z54 w1748401249
+Z55 8spi_final_working.v
+Z56 Fspi_final_working.v
+!i122 12
+L0 8 288
+R14
+R15
+r1
+!s85 0
+31
+Z57 !s108 1748401249.000000
+Z58 !s107 complete_spi_fix.v|spi_final_working.v|
+Z59 !s90 spi_final_working.v|complete_spi_fix.v|
+!i113 0
+R19
+R10
+vspi_slave
+R25
+R26
+!i10b 1
+!s100 z<A[RFXgNKOOSmP<_<>A<3
+Ilfn8kG5EYBX[cjT::7iH72
+R4
+R33
+R34
+R35
+!i122 0
+L0 11 63
+R14
+R15
+r1
+!s85 0
+31
+R27
+R28
+R29
+!i113 0
+R19
+R10
+vspi_slave_cdc
+R52
+R53
+!i10b 1
+!s100 AFzMc2k0SSb692791KdC:0
+I27SDNA3kYQ;;gEhB4j5nP1
+R4
+Z60 w1748400723
+Z61 8complete_spi_fix.v
+Z62 Fcomplete_spi_fix.v
+!i122 12
+L0 8 86
+R14
+R15
+r1
+!s85 0
+31
+R57
+R58
+R59
+!i113 0
+R19
+R10
+vspi_slave_fixed
+Z63 2systolic_array_fsm_design.v|spi_wrapper_fixed.v|test_fixed_spi.v
+Z64 !s110 1748399069
+!i10b 1
+!s100 3KARbZGl5k=4Smz@CFBkI3
+IIJfe]`<X26ZAXHQJo?Q2P1
+R4
+Z65 w1748399043
+Z66 8spi_wrapper_fixed.v
+Z67 Fspi_wrapper_fixed.v
+!i122 1
+L0 10 60
+R14
+R15
+r1
+!s85 0
+31
+Z68 !s108 1748399069.000000
+Z69 !s107 test_fixed_spi.v|spi_wrapper_fixed.v|systolic_array_fsm_design.v|
+Z70 !s90 systolic_array_fsm_design.v|spi_wrapper_fixed.v|test_fixed_spi.v|
+!i113 0
+R19
+R10
+vspi_working_test
+2spi_working.v
+!s110 1748399164
+!i10b 1
+!s100 X:YHmZ^AkJm2iRVPRPV[d2
+Iekf><_hF??;1Q5PPzLek22
+R4
+w1748399155
+8spi_working.v
+Fspi_working.v
+!i122 2
+L0 3 131
+R14
+R15
+r1
+!s85 0
+31
+!s108 1748399164.000000
+!s107 spi_working.v|
+!s90 spi_working.v|
+!i113 0
+R19
+R10
+vsystolic_array_4x4
+R20
+R21
+!i10b 1
+!s100 C@2An<Kb:]4@Th@W070M<1
+IOnRa6kf>ZNB5?IG>XlDlE1
+R4
+R30
+R31
+R32
+!i122 25
+L0 11 453
+R14
+R15
+r1
+!s85 0
+31
+R22
+R23
+R24
+!i113 0
+R19
+R10
+vsystolic_parallel_wrapper
+R20
+R21
+!i10b 1
+!s100 PfmTh=<:n`[L4KFKQf0M70
+Ibi;X8NO@Y1ho]z9lYlfTE2
+R4
+w1748402874
+8parallel_interface_wrapper_final.v
+Fparallel_interface_wrapper_final.v
+!i122 25
+L0 8 315
+R14
+R15
+r1
+!s85 0
+31
+R22
+R23
+R24
+!i113 0
+R19
+R10
+vsystolic_spi_wrapper
+R25
+R26
+!i10b 1
+!s100 X_6;Pd:o24c^[6EBkj8WJ1
+I:8B`mibjTCHJSV8UD0cP12
+R4
+R33
+R34
+R35
+!i122 0
+L0 348 126
+R14
+R15
+r1
+!s85 0
+31
+R27
+R28
+R29
+!i113 0
+R19
+R10
+vsystolic_spi_wrapper_complete
+R52
+R53
+!i10b 1
+!s100 e<KG1:RJ[Iag4RV4i?J4Y2
+I;jZNWB4j2Hi3iAQOh2YG31
+R4
+R60
+R61
+R62
+!i122 12
+L0 96 83
+R14
+R15
+r1
+!s85 0
+31
+R57
+R58
+R59
+!i113 0
+R19
+R10
+vsystolic_spi_wrapper_final
+R36
+R37
+!i10b 1
+!s100 9Z78PRCMLoRfmJP<gC9Id3
+I:[oT7YQA[ZJ7eTjgVZ@kH0
+R4
+R38
+R34
+R35
+!i122 6
+L0 384 120
+R14
+R15
+r1
+!s85 0
+31
+R39
+R40
+R41
+!i113 0
+R19
+R10
+vsystolic_spi_wrapper_final_complete
+R42
+R43
+!i10b 1
+!s100 K[?QS6j[Ke5@8WInDQAT30
+I:XB?^Xz<5=9HX4cdLZh`i0
+R4
+Z71 w1748400997
+Z72 8final_complete_test.v
+Z73 Ffinal_complete_test.v
+!i122 11
+L0 8 83
+R14
+R15
+r1
+!s85 0
+31
+R47
+R48
+R49
+!i113 0
+R19
+R10
+vsystolic_spi_wrapper_fixed
+R63
+R64
+!i10b 1
+!s100 VdfLW0n3K5ndfYcz4e?J:3
+IUVS2n?NTAN6SR>O01^Sm>3
+R4
+R65
+R66
+R67
+!i122 1
+L0 357 118
+R14
+R15
+r1
+!s85 0
+31
+R68
+R69
+R70
+!i113 0
+R19
+R10
+vsystolic_spi_wrapper_working
+R52
+R53
+!i10b 1
+!s100 T4TeWL>0>c@0g2fdcGzJ?2
+IFVU`Yh8:=`D`gB;AW^Wg43
+R4
+R54
+R55
+R56
+!i122 12
+L0 298 62
+R14
+R15
+r1
+!s85 0
+31
+R57
+R58
+R59
+!i113 0
+R19
+R10
+vtb_final_complete_test
+R42
+R43
+!i10b 1
+!s100 _o[j?P2_X[NnD[jJCm0H;1
+I[2k>E<;dNYPn]UM^cb9n=0
+R4
+R71
+R72
+R73
+!i122 11
+L0 93 128
+R14
+R15
+r1
+!s85 0
+31
+R47
+R48
+R49
+!i113 0
+R19
+R10
+vtb_final_spi_systolic
+2systolic_array_fsm_design.v|spi_systolic_wrapper.v|final_spi_testbench.v
+!s110 1748400190
+!i10b 1
+!s100 >YmaiF:I_9be0VTMH`nd:0
+Ig0`eI_ZZ0i>>iAV]9`WRR2
+R4
+w1748400180
+8final_spi_testbench.v
+Ffinal_spi_testbench.v
+!i122 4
+L0 8 275
+R14
+R15
+r1
+!s85 0
+31
+!s108 1748400190.000000
+!s107 final_spi_testbench.v|spi_systolic_wrapper.v|systolic_array_fsm_design.v|
+!s90 systolic_array_fsm_design.v|spi_systolic_wrapper.v|final_spi_testbench.v|
+!i113 0
+R19
+R10
+vtb_parallel_systolic
+2systolic_array_fsm_design.v|parallel_interface_wrapper_final.v|parallel_testbench_fixed.v
+!s110 1748402906
+!i10b 1
+!s100 zm`mJfOMkMzKAoo9e3zGd1
+INSG=>`ZDhYH=_mGG4nBMd0
+R4
+w1748402636
+8parallel_testbench_fixed.v
+Fparallel_testbench_fixed.v
+!i122 20
+R51
+R14
+R15
+r1
+!s85 0
+31
+!s108 1748402906.000000
+!s107 parallel_testbench_fixed.v|parallel_interface_wrapper_final.v|systolic_array_fsm_design.v|
+!s90 systolic_array_fsm_design.v|parallel_interface_wrapper_final.v|parallel_testbench_fixed.v|
+!i113 0
+R19
+R10
+vtb_wrapper_corrected
+2systolic_array_fsm_design.v|parallel_interface_wrapper_final.v|wrapper_test_corrected.v
+!s110 1748403289
+!i10b 1
+!s100 ;2BmIN:bKhN6iK1ARA;<^3
+IVfEQQARnP2oQgSnLUdlPB3
+R4
+w1748403289
+8wrapper_test_corrected.v
+Fwrapper_test_corrected.v
+!i122 24
+L0 8 309
+R14
+R15
+r1
+!s85 0
+31
+!s108 1748403289.000000
+!s107 wrapper_test_corrected.v|parallel_interface_wrapper_final.v|systolic_array_fsm_design.v|
+!s90 systolic_array_fsm_design.v|parallel_interface_wrapper_final.v|wrapper_test_corrected.v|
+!i113 0
+R19
+R10
+vtest_complete_spi
+2spi_controller_fixed.v|complete_spi_fix.v|test_complete_spi.v
+!s110 1748400723
+!i10b 1
+!s100 ISGIo7hZG=NmD7YIieG6C3
+IQAF@ZN=No[CO_V<QJUR6l2
+R4
+R60
+8test_complete_spi.v
+Ftest_complete_spi.v
+!i122 8
+L0 3 87
+R14
+R15
+r1
+!s85 0
+31
+!s108 1748400723.000000
+!s107 test_complete_spi.v|complete_spi_fix.v|spi_controller_fixed.v|
+!s90 spi_controller_fixed.v|complete_spi_fix.v|test_complete_spi.v|
+!i113 0
+R19
+R10
+vtest_final_fix
+R42
+R43
+!i10b 1
+!s100 A@ZOo6ZS;]0gSg2_>:C;O0
+IR3fRI[YBE3:nK85ZHP[Vj0
+R4
+R44
+R45
+R46
+!i122 11
+L0 303 44
+R14
+R15
+r1
+!s85 0
+31
+R47
+R48
+R49
+!i113 0
+R19
+R10
+vtest_fixed_read
+2spi_controller_fixed.v|test_fixed_read.v
+!s110 1748400608
+!i10b 1
+!s100 Kl0k34l0=CIH[H3oUI?P`3
+I8Ml@HF=dS;1UdNzGYY>H[0
+R4
+R50
+8test_fixed_read.v
+Ftest_fixed_read.v
+!i122 7
+L0 3 45
+R14
+R15
+r1
+!s85 0
+31
+!s108 1748400608.000000
+!s107 test_fixed_read.v|spi_controller_fixed.v|
+!s90 spi_controller_fixed.v|test_fixed_read.v|
+!i113 0
+R19
+R10
+vtest_fixed_spi
+R63
+R64
+!i10b 1
+!s100 5QfEVi[aVk[S5`0WzGAMe3
+I:n@CNMO7bP]08GQKR=TWZ2
+R4
+w1748399069
+8test_fixed_spi.v
+Ftest_fixed_spi.v
+!i122 1
+L0 3 57
+R14
+R15
+r1
+!s85 0
+31
+R68
+R69
+R70
+!i113 0
+R19
+R10
+vtest_spi_read_fix
+R36
+R37
+!i10b 1
+!s100 OL3X6h3<`WPGFiZ_iW>iF3
+IKB=T?5HRB4W19=AFZC];S1
+R4
+w1748400436
+8spi_read_fix.v
+Fspi_read_fix.v
+!i122 6
+L0 7 102
+R14
+R15
+r1
+!s85 0
+31
+R39
+R40
+R41
+!i113 0
+R19
+R10
+vtest_working_spi
+R52
+R53
+!i10b 1
+!s100 85K>6:I_THfcol=IZmU=?2
+IleYPfLLTHKZjXk>mE4lcU0
+R4
+R54
+R55
+R56
+!i122 12
+L0 362 79
+R14
+R15
+r1
+!s85 0
+31
+R57
+R58
+R59
+!i113 0
+R19
+R10

@@ -1,0 +1,1 @@
+/pkgs/mentor/questa/2024.2/questasim/linux_x86_64/VisualizerRls/bin/viscom -nolock -quiet -jmem_size 786432 work.tb_wrapper_corrected -quiet -auto_acc_if_foreign -work work -allow_unnamed -o _opt1 -id 1-5254006cf05e-6836845b-8150c-5d96 +__design_bin_path+/u/ezhou/verilog/ece410/systolic_design

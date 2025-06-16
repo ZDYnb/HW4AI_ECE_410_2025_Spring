@@ -1,0 +1,528 @@
+m255
+K4
+z2
+Z0 !s12c _opt1
+Z1 !s99 nomlopt
+R0
+R1
+R0
+R1
+Z2 !s12c _opt2
+R1
+R2
+R1
+R2
+R1
+Z3 !s12c _opt
+R1
+R3
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R3
+R1
+R2
+R1
+R0
+R1
+R3
+R1
+R3
+R1
+R3
+R1
+R3
+R1
+R3
+R1
+R3
+R1
+R3
+R1
+!s11f vlog 2024.2 2024.05, May 20 2024
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z4 d/u/ezhou/verilog/ece410/softmax
+T_opt
+!s110 1749116678
+VbYfmY02<TodSmbhFYZP=;2
+04 19 4 work tb_softmax_complete fast 0
+=1-5254006cf05e-68416705-7f980-2c52
+R1
+Z5 !s12f OEM100
+Z6 !s12b OEM100
+Z7 !s124 OEM100
+Z8 !s135 nogc
+Z9 o-quiet -auto_acc_if_foreign -work work
+Z10 tCvgOpt 0
+n@_opt
+Z11 OL;O;2024.2;79
+R4
+T_opt1
+!s110 1749148429
+VXDn1`oP:6<<MkQFMEKMNP0
+04 19 4 work tb_parallel_softmax fast 0
+=1-5254006cf05e-6841e30d-42870-1bc7
+R1
+R5
+R6
+R7
+R8
+R9
+R10
+n@_opt1
+R11
+R4
+T_opt2
+!s110 1749117092
+V9JkacB2Th_5_OWR:UO_MY2
+04 15 4 work tb_debug_values fast 0
+=1-5254006cf05e-684168a3-7036c-3919
+R1
+R5
+R6
+R7
+R8
+R9
+R10
+n@_opt2
+R11
+R4
+vexp_lut_combinational
+Z12 2softmax_controller_parallel.v
+Z13 !s110 1749148423
+!i10b 1
+!s100 Ih;SQ:8TKYRI]n4R5504K1
+IVGG1aH=J0d0CmBN?@:7<^0
+R4
+Z14 w1749148401
+Z15 8softmax_controller_parallel.v
+Z16 Fsoftmax_controller_parallel.v
+!i122 42
+L0 202 92
+Z17 VDg1SIo80bB@j0V0VzS_@n1
+Z18 OL;L;2024.2;79
+r1
+!s85 0
+31
+Z19 !s108 1749148423.000000
+Z20 !s107 softmax_controller_parallel.v|
+Z21 !s90 softmax_controller_parallel.v|
+!i113 0
+Z22 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R10
+vexp_lut_unit
+Z23 !s110 1749147288
+!i10b 1
+!s100 L3UP>MlF@5CYj;RST;NGm2
+IA>6;aiYLSmI_DR6[L2JV`0
+R4
+w1749101502
+8exp_lut_unit.v
+Fexp_lut_unit.v
+!i122 39
+Z24 L0 9 113
+R17
+R18
+r1
+!s85 0
+31
+Z25 !s108 1749147288.000000
+Z26 !s107 tree_sum_accumulator.v|tb_tree_sum.v|tb_softmax_debug.v|tb_softmax_complete.v|tb_reciprocal_unit.v|tb_parallel_softmax.v|tb_max_finder_64.v|tb_fixed_point_divider.v|tb_exp_lut_unit.v|tb_debug_values.v|softmax_controller_reciprocal.v|softmax_controller_parallel.v|reciprocal_unit.v|max_finder_64.v|fixed_point_divider.v|exp_lut_unit.v|
+Z27 !s90 exp_lut_unit.v|fixed_point_divider.v|max_finder_64.v|reciprocal_unit.v|softmax_controller_parallel.v|softmax_controller_reciprocal.v|tb_debug_values.v|tb_exp_lut_unit.v|tb_fixed_point_divider.v|tb_max_finder_64.v|tb_parallel_softmax.v|tb_reciprocal_unit.v|tb_softmax_complete.v|tb_softmax_debug.v|tb_tree_sum.v|tree_sum_accumulator.v|
+!i113 0
+R22
+R10
+vfixed_point_divider
+R23
+!i10b 1
+!s100 L=?00cjRT:h6J97d4S6G:3
+IL^2k<5UXc:Gdnk;0^1Rl70
+R4
+w1749115140
+8fixed_point_divider.v
+Ffixed_point_divider.v
+!i122 39
+R24
+R17
+R18
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 0
+R22
+R10
+vmax_comparator_2
+R23
+!i10b 1
+!s100 ZckSf7oUT9_K]H>FPcPOZ1
+I`]:UhWhTT5<ZzW4;7l5Jg2
+R4
+Z28 w1749079905
+Z29 8max_finder_64.v
+Z30 Fmax_finder_64.v
+!i122 39
+L0 116 15
+R17
+R18
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 0
+R22
+R10
+vmax_finder_64
+R23
+!i10b 1
+!s100 W:9j]aX9;9CIj7L]nX3J;1
+I<zFN?gU0hglAj58SCke5H1
+R4
+R28
+R29
+R30
+!i122 39
+L0 9 103
+R17
+R18
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 0
+R22
+R10
+vreciprocal_unit
+R23
+!i10b 1
+!s100 SCZaK<k??aPN0_J`oK^8Y2
+Io]cJmfEQVlbOFmMO?1XC42
+R4
+w1749115660
+8reciprocal_unit.v
+Freciprocal_unit.v
+R29
+R30
+!i122 39
+L0 2 112
+R17
+R18
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 0
+R22
+R10
+vsoftmax_controller_parallel
+R12
+R13
+!i10b 1
+!s100 U?O<Ii>L9m:zLSG?falBQ3
+IAomYC_MmgAYSUaCziaHZY3
+R4
+R14
+R15
+R16
+!i122 42
+L0 3 194
+R17
+R18
+r1
+!s85 0
+31
+R19
+R20
+R21
+!i113 0
+R22
+R10
+vsoftmax_controller_reciprocal
+R23
+!i10b 1
+!s100 @F]KHmgIj[I_^QXcl<D3G0
+I2YV=mEYVc:^CC;3g6g3Id3
+R4
+w1749116673
+8softmax_controller_reciprocal.v
+Fsoftmax_controller_reciprocal.v
+!i122 39
+L0 3 229
+R17
+R18
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 0
+R22
+R10
+vtb_debug_values
+R23
+!i10b 1
+!s100 PD0]ooaVEG@?1?cTA_:Jf2
+I7?8k]G53M3J3ki4j2WT?S3
+R4
+w1749117087
+8tb_debug_values.v
+Ftb_debug_values.v
+!i122 39
+L0 3 107
+R17
+R18
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 0
+R22
+R10
+vtb_exp_lut_unit
+R23
+!i10b 1
+!s100 8OD96ERe[GiMZ^G;:<;oL2
+I`Y9CzHY=cC1V7anlY7:mf2
+R4
+w1749097229
+8tb_exp_lut_unit.v
+Ftb_exp_lut_unit.v
+!i122 39
+L0 9 204
+R17
+R18
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 0
+R22
+R10
+vtb_fixed_point_divider
+2fixed_point_divider.v|tb_fixed_point_divider.v
+!s110 1749115269
+!i10b 1
+!s100 nOd8>9M9GZXM^<LGeS=[Y1
+IeHf=G;D5i`fWnGK:_>LaI2
+R4
+w1749115267
+8tb_fixed_point_divider.v
+Ftb_fixed_point_divider.v
+!i122 12
+L0 8 216
+R17
+R18
+r1
+!s85 0
+31
+!s108 1749115269.000000
+!s107 tb_fixed_point_divider.v|fixed_point_divider.v|
+!s90 fixed_point_divider.v|tb_fixed_point_divider.v|
+!i113 0
+R22
+R10
+vtb_max_finder_64
+R23
+!i10b 1
+!s100 [gzzS@N7SkidR]mYlhZ[[2
+I1N8A;XPkP0@<^]92FkdgN3
+R4
+w1749079935
+8tb_max_finder_64.v
+Ftb_max_finder_64.v
+!i122 39
+L0 9 243
+R17
+R18
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 0
+R22
+R10
+vtb_parallel_softmax
+2tb_parallel_softmax.v
+!s110 1749148404
+!i10b 1
+!s100 J45M`BzkzfeFN1]h3=2H>1
+IFzO?n75:e9?O88bH]7bEa0
+R4
+w1749147479
+8tb_parallel_softmax.v
+Ftb_parallel_softmax.v
+!i122 41
+L0 3 281
+R17
+R18
+r1
+!s85 0
+31
+!s108 1749148404.000000
+!s107 tb_parallel_softmax.v|
+!s90 tb_parallel_softmax.v|
+!i113 0
+R22
+R10
+vtb_reciprocal_unit
+R23
+!i10b 1
+!s100 jhYCde1HAU_XGcF:@@@Ql3
+IG3YK7Gfi5hD;8XZYMe;Fa1
+R4
+w1749115743
+8tb_reciprocal_unit.v
+Ftb_reciprocal_unit.v
+!i122 39
+L0 3 196
+R17
+R18
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 0
+R22
+R10
+vtb_softmax_complete
+R23
+!i10b 1
+!s100 _D6h6F10CSGI2:6L_GUz@3
+IBz^5n;PW<3_cQF@>BUUnb2
+R4
+w1749116627
+8tb_softmax_complete.v
+Ftb_softmax_complete.v
+!i122 39
+L0 3 217
+R17
+R18
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 0
+R22
+R10
+vtb_softmax_debug
+R23
+!i10b 1
+!s100 90K50QJIj_U4M<5FALP<F1
+Ih6F?Kn5GdjL2OO44XE?oh1
+R4
+w1749116542
+8tb_softmax_debug.v
+Ftb_softmax_debug.v
+!i122 39
+L0 3 104
+R17
+R18
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 0
+R22
+R10
+vtb_tree_sum
+R23
+!i10b 1
+!s100 @Q8:IBKj36KaLXEJQlP6g0
+Ilm62HaoMlGZ]El1HOYUeA3
+R4
+w1749114971
+8tb_tree_sum.v
+Ftb_tree_sum.v
+!i122 39
+L0 3 322
+R17
+R18
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 0
+R22
+R10
+vtop
+DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+!s110 1749200291
+!i10b 1
+!s100 91DzeJ3_j<mCVzn01_39m3
+IicIPlN6Df]H@ON=QWi0463
+S1
+R4
+w1749200168
+8top.v
+Ftop.v
+!i122 43
+L0 9 65
+R17
+R18
+r1
+!s85 0
+31
+!s108 1749200291.000000
+!s107 testbench.v|layer_norm_top.v|streaming_controller.v|top.v|
+!s90 -sv|top.v|streaming_controller.v|layer_norm_top.v|testbench.v|
+!i113 0
+o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R10
+vtree_sum_accumulator
+R23
+!i10b 1
+!s100 COPeXJ[8VInAE9^DXN1<83
+IISnh4KOIaU@6YLjo:l2kC0
+R4
+w1749114764
+8tree_sum_accumulator.v
+Ftree_sum_accumulator.v
+!i122 39
+L0 3 127
+R17
+R18
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 0
+R22
+R10

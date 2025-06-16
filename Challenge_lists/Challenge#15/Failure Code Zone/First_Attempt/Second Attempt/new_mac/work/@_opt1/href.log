@@ -1,0 +1,10 @@
+BEGIN 1:processing_element:fast:work
+    data_in_L :  1:systolic_array_tb:fast:work
+    data_valid_in_L :  1:systolic_array_tb:fast:work
+    weight_in_T :  1:systolic_array_tb:fast:work
+    weight_valid_in_T :  1:systolic_array_tb:fast:work
+END 
+BEGIN 1:mac_unit:fast:work
+    enable_mac :  1:systolic_array_tb:fast:work
+    clear_accum :  1:systolic_array_tb:fast:work
+END 

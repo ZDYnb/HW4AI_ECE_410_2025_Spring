@@ -1,0 +1,40 @@
+$date
+	Tue Jun  3 00:39:06 2025
+$end
+$version
+	QuestaSim Version 2024.2
+$end
+$timescale
+	1ps
+$end
+
+$scope module tb_systolic_64x64 $end
+
+$scope task reset_system $end
+$upscope $end
+
+$scope task run_computation $end
+$upscope $end
+
+$scope task display_irregular_result $end
+$upscope $end
+
+$scope task verify_irregular_results $end
+$upscope $end
+
+$scope task load_48x48_qkv_test $end
+$upscope $end
+
+$scope task load_32x64_ffn_test $end
+$upscope $end
+
+$scope task load_16x64_sequence_test $end
+$upscope $end
+
+$scope task load_64x24_projection_test $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+$end

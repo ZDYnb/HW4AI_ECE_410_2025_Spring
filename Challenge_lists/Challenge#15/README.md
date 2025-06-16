@@ -3,9 +3,13 @@
 **April 30, 2025**
 
 # introduction
-in this project we are going to try to map our algurithm to systemverilog to achieve hardware acceleration. However, as I am a new nerd to HDL, I heavily used chatgpt as a reference in this challenge, from code Block plan, software too choice and installation and coding itself.
+in this project we are going to try to map our algurithm to systemverilog or verilog to achieve hardware acceleration. However, as I am a new nerd to HDL, I heavily used chatgpt as a reference in this challenge, from code Block plan, software too choice and installation and coding itself. Things went specially not well for 
 
-In challenge 15, I would like to map my gpt2 algurithm into HDL. after above digging into the code, I thik I am ready to pose the code diagram
+
+
+
+
+In challenge 15, I would like to map my gpt2 algurithm into HDL. after previous digging and profiling into the code, I thik I am ready to pose the code diagram
 ┌────────────────────┐
 │ 1. Model Config    │
 │ GPTConfig:         │
@@ -171,3 +175,166 @@ data quantalization
 
 `timescale 1ns/100ps    //时间单位为1ns，精度为100ps，合法
 shiji
+
+
+
+
+At the beginning of this challenge, I explored multiple directions — starting with PyMTL, thinking that writing hardware in Python might allow better integration with my software-level logic.
+
+However, I quickly realized that GPT-generated PyMTL code was unstable and unreliable. Due to the fast-evolving Python ecosystem and frequent library version mismatches, most code it generated failed to run. After spending some time troubleshooting, I decided to drop this approach and let GPT directly generate plain Verilog instead.
+
+Initially, I simply expected ChatGPT to "just write the code" for me — describing the function I wanted and asking it to implement it in Verilog.
+In hindsight, this was a flawed approach. The real issue was that I didn’t yet understand what it truly means to design a digital hardware system. I thought Verilog was just like a low-level C — where writing logic line by line would automatically get mapped into hardware, and pipelining would “just happen” through sequential execution.
+
+At that point, I had no concept of timing vs combinational logic, or of defining modular compute units. I assumed that describing the math was enough, and Verilog would take care of the rest.
+
+For example, I would generate code like this:
+
+verilog
+Copy
+Edit
+always_comb begin
+    sum = 0;
+    for (int i = 0; i < N; i++) begin
+        mul[i] = weights[i] * v[i];       // Q8.8 × Q8.8 = Q16.16
+        sum += mul[i];
+    end
+    out = sum[23:8];  // Q16.16 → Q8.8 (truncation)
+end
+At first glance, this looks fine — it computes what I need. But I didn’t think about how it translates to real logic gates. There’s no pipelining, no clocking, no enable signals. It’s not a real compute unit — it’s just math written out sequentially.
+
+⚠️ What I Learned
+I’ve come to realize that AI tools like GPT can only help if you already know the design structure you want.
+If you don’t understand hardware design fundamentals, GPT will happily generate syntactically valid but architecturally broken designs.
+
+In short: without a hardware-aware mindset, AI-generated HDL becomes a distraction — not a solution.
+So I stepped back and asked myself:
+What is the key computational unit that’s truly worth accelerating?
+
+Looking back at my simplified transformer model, it became clear that matrix multiplication dominates the workload. If I could build a fast and reusable matrix multiply unit, it would benefit almost every stage of the transformer pipeline — from Q/K/V projections to feed-forward layers and output projection.
+
+This insight helped me refocus my efforts.
+Instead of trying to build the full pipeline all at once, I decided to start with the core unit: a matrix multiply engine.
+
+
+At this point, our course had introduced the concept of a systolic array, and I found it both elegant and practical. A systolic array is a structured architecture where data flows rhythmically through a grid of processing elements — like a heartbeat — enabling high-throughput matrix multiplication with predictable timing.
+
+Unlike naïve implementations, a systolic array supports:
+
+Parallelism: Each PE (processing element) computes in parallel with neighbors
+
+Pipelining: Data flows stage by stage, minimizing stalls
+
+Local communication: No global interconnect needed
+
+With these advantages, the systolic array became the foundation of my acceleration plan.
+
+
+## 🛠️ Design Progress: From Systolic Arrays to Full Tiny Transformer
+
+After struggling with unclear objectives earlier, this time I approached my design with a **clear goal in mind**.  
+I knew what I wanted: to build a functional, quantized, and efficient **transformer pipeline**, starting with its core — **matrix multiplication**.
+
+---
+
+### 🔶 Step 1: Systolic Array Construction
+
+I began with the idea that **if we can build a powerful matrix multiplier, we can accelerate the whole design**.  
+So I focused on constructing a **systolic array**, starting from the ground up.
+
+- First, I implemented a small **`pe` (processing element)** and **`mac_unit`**.
+- After verifying them independently, I gradually composed them into systolic arrays:
+  - Started from a `2×2` systolic array as a **proof of concept**
+  - Then scaled it up to `4×4`, `8×8`, all the way to `64×64`
+- Each version was **simulated and verified to function correctly**
+- The design used **Q5.10 fixed-point format**, matching the transformer computation needs
+
+This modular, test-driven growth helped me build confidence before moving on to other components.
+
+---
+
+### 🔶 Step 2: Transformer Submodules
+
+Once the systolic array was working, I moved on to building the rest of the transformer’s computation pipeline.
+
+#### 📐 LayerNorm
+
+I implemented LayerNorm as a pipelined process involving:
+
+1. **Mean computation** via an adder tree
+2. **Centering**: compute \( x_i - \mu \)
+3. **Squaring**: compute \( (x_i - \mu)^2 \)
+4. **Variance computation** with another adder tree
+5. **Square root** using the **Newton-Raphson method**
+6. **Normalization**:  
+   \( \text{norm}_i = \frac{(x_i - \mu)}{\sqrt{\sigma^2 + \epsilon}} \)
+7. **Scaling and shifting**:  
+   \( y_i = \text{norm}_i × \gamma + \beta \)
+
+This pipeline mirrors the full LayerNorm equation, and was carefully pipelined to avoid combinational delays.
+
+---
+
+#### ⚡ GELU Activation
+
+For GELU, I decided to use a **lookup table (LUT)** instead of implementing the complex tanh-based function directly.
+
+- The input is quantized
+- A LUT maps the input to its approximated GELU value
+- This decision reduced logic depth and made hardware implementation much easier
+
+---
+
+#### 📊 Softmax
+
+For the softmax layer:
+
+- I used a **LUT for exponential approximation**
+- Then performed an **adder tree sum**
+- Finally, implemented the division stage using a **normalization-by-max trick** followed by element-wise division
+
+This allowed softmax to be implemented using only fixed-point operations.
+
+---
+
+### 🔧 Step 3: Integration and FSM Control
+
+After each module was individually verified and debugged, I started **connecting them together**, designing a **top-level controller** using a **Finite State Machine (FSM)** to:
+
+- Sequence data flow between layers
+- Control valid/ready signals
+- Handle memory reuse efficiently
+
+---
+
+### 🤏 Final Design: Scaling Down to 16×16
+
+While my original ambition was to implement a **full 768×768 transformer**, I quickly ran into practical challenges:
+
+- Difficulty in debugging very large Verilog designs  
+- Complexity in handling arbitrary matrix dimensions (especially non-square matrices)  
+- The overhead of writing and maintaining testbenches at such a large scale
+
+💡 As a result, I decided to **scale down to a `16×16` Tiny Transformer**, with the goal of keeping the design:
+
+- Fully modular  
+- Clock-cycle accurate  
+- Functionally verifiable through simulation  
+
+---
+
+> ✅ This compromise allowed me to **walk through the full digital design process** — from building reusable submodules, to integrating them at the top level, and finally validating a complete forward pass in hardware.
+
+---
+
+### 🧮 Final Performance
+
+After full integration and testing, the design achieves a complete forward pass in **476 clock cycles**.
+
+If fabricated on an ASIC running at **20 MHz**, this corresponds to:
+
+476 cycles ÷ 20,000,000 Hz ≈ 23.8 µs
+
+That’s roughly **24 microseconds per inference**, enabling lightweight inference at the edge.
+
+---

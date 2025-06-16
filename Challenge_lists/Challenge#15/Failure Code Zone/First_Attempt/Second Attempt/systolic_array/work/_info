@@ -1,0 +1,201 @@
+m255
+K4
+z2
+Z0 !s12c _opt2
+Z1 !s99 nomlopt
+R0
+R1
+!s12c _opt1
+R1
+!s12c _opt
+R1
+!s11f MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z2 d/u/ezhou/verilog/ece410/systolic_array
+T_opt
+!s110 1748922283
+VmAjaI=CFm`XaogR=0hMn53
+04 17 4 work tb_mac_unit_basic fast 0
+=1-5254006cf05e-683e6faa-9ac4e-12f9
+R1
+Z3 !s12f OEM100
+Z4 !s12b OEM100
+Z5 !s124 OEM100
+Z6 !s135 nogc
+Z7 o-quiet -auto_acc_if_foreign -work work
+Z8 tCvgOpt 0
+n@_opt
+Z9 OL;O;2024.2;79
+R2
+T_opt1
+!s110 1748927759
+V]jGP38Zn3z2WOkmAmbZ[Y3
+04 21 4 work tb_processing_element fast 0
+=1-5254006cf05e-683e850f-52-1498
+R1
+R3
+R4
+R5
+R6
+R7
+R8
+n@_opt1
+R9
+R2
+T_opt2
+!s110 1748932794
+VzkD8JLfbJBfXfnG4d8biM0
+04 22 4 work tb_systolic_array_core fast 0
+=1-5254006cf05e-683e98ba-3ac8a-73ae
+R1
+R3
+R4
+R5
+R6
+R7
+R8
+n@_opt2
+R9
+vmac_unit_basic
+Z10 2mac_unit.v|processing_element.v|systolic_array_core.v|tb_systolic_array_core.v
+Z11 !s110 1748932791
+!i10b 1
+!s100 LiJl1FJl62eh?R7M:<:e41
+IQ8J1>Hkk^2[mNQ^z=;D=i1
+R2
+w1748921927
+8mac_unit.v
+Fmac_unit.v
+!i122 13
+L0 6 63
+Z12 VDg1SIo80bB@j0V0VzS_@n1
+Z13 OL;L;2024.2;79
+r1
+!s85 0
+31
+Z14 !s108 1748932791.000000
+Z15 !s107 tb_systolic_array_core.v|systolic_array_core.v|processing_element.v|mac_unit.v|
+Z16 !s90 mac_unit.v|processing_element.v|systolic_array_core.v|tb_systolic_array_core.v|
+!i113 0
+Z17 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R8
+vprocessing_element
+R10
+R11
+!i10b 1
+!s100 Az`Nm]i6E7[ZSO:LV`49l0
+I5XfQ?GS`5z^aBUcgnIB5N0
+R2
+w1748932782
+8processing_element.v
+Fprocessing_element.v
+!i122 13
+L0 7 108
+R12
+R13
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 0
+R17
+R8
+vsystolic_array_core
+R10
+R11
+!i10b 1
+!s100 b[jF1TL2zH<Q`U:JnmLS[3
+IkkTSh2zI^C1]CCXm80;W[2
+R2
+w1748931573
+8systolic_array_core.v
+Fsystolic_array_core.v
+!i122 13
+L0 3 127
+R12
+R13
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 0
+R17
+R8
+vtb_mac_unit_basic
+2mac_unit.v|tb_mac_unit.v
+!s110 1748922261
+!i10b 1
+!s100 TdhZTGm]kRb;hh?`jGX<H0
+Ih5oeNUPjcEXQ;@_zT8AhN3
+R2
+w1748922258
+8tb_mac_unit.v
+Ftb_mac_unit.v
+!i122 1
+L0 3 104
+R12
+R13
+r1
+!s85 0
+31
+!s108 1748922261.000000
+!s107 tb_mac_unit.v|mac_unit.v|
+!s90 mac_unit.v|tb_mac_unit.v|
+!i113 0
+R17
+R8
+vtb_processing_element
+2processing_element.v|tb_processing_element.v
+!s110 1748927725
+!i10b 1
+!s100 XY6z^Wg0_<8oiI=emHVlS2
+I5RNK:NO4[6=^lKJ4ANcV<0
+R2
+w1748927616
+8tb_processing_element.v
+Ftb_processing_element.v
+!i122 3
+L0 3 131
+R12
+R13
+r1
+!s85 0
+31
+!s108 1748927724.000000
+!s107 tb_processing_element.v|processing_element.v|
+!s90 processing_element.v|tb_processing_element.v|
+!i113 0
+R17
+R8
+vtb_systolic_array_core
+R10
+R11
+!i10b 1
+!s100 8=VVAhJGHGP:Zcn6X4X[P2
+InzR>ngac7LUHJW^k3]FXc2
+R2
+w1748931811
+8tb_systolic_array_core.v
+Ftb_systolic_array_core.v
+!i122 13
+L0 3 169
+R12
+R13
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 0
+R17
+R8

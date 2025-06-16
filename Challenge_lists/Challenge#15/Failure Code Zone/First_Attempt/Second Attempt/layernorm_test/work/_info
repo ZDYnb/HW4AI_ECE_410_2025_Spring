@@ -1,0 +1,919 @@
+m255
+K4
+z2
+Z0 !s12c _opt
+Z1 !s99 nomlopt
+Z2 !s12c _opt2
+R1
+R2
+R1
+R0
+R1
+R0
+R1
+R2
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R2
+R1
+R2
+R1
+R0
+R1
+R0
+R1
+R2
+R1
+R2
+R1
+R2
+R1
+R2
+R1
+R2
+R1
+R2
+R1
+R2
+R1
+R2
+R1
+R2
+R1
+R2
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R2
+R1
+R2
+R1
+R2
+R1
+R2
+R1
+Z3 !s12c _opt1
+R1
+R3
+R1
+R3
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R2
+R1
+R3
+R1
+R3
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R2
+R1
+R2
+R1
+R3
+R1
+R3
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+!s11f vlog 2024.2 2024.05, May 20 2024
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z4 d/u/ezhou/verilog/ece410/layernorm_test
+T_opt
+!s110 1749201475
+V2BJ8T]2DGan1_nho@[D`Z1
+04 16 4 work tb_layer_norm_64 fast 0
+=1-5254006cf05e-6842b242-f151f-1813
+R1
+Z5 !s12f OEM100
+Z6 !s12b OEM100
+Z7 !s124 OEM100
+Z8 !s135 nogc
+Z9 o-quiet -auto_acc_if_foreign -work work
+Z10 tCvgOpt 0
+n@_opt
+Z11 OL;O;2024.2;79
+T_opt2
+!s110 1749201228
+V6boEdeB6MV]>F@Dlg_>B80
+04 23 4 work simple_matrix_layernorm fast 0
+=1-5254006cf05e-6842b14b-d0f8d-10c7
+R1
+R5
+R6
+R7
+R8
+R9
+R10
+n@_opt2
+R11
+R4
+vdebug_step_by_step
+Z12 !s110 1749201474
+!i10b 1
+!s100 e:2b?EgJdFGH_W;TUff_90
+IEB4haEeAn2h?maWDRK9jN1
+R4
+w1748821198
+8debug_step_by_step.v
+Fdebug_step_by_step.v
+!i122 202
+L0 2 142
+Z13 VDg1SIo80bB@j0V0VzS_@n1
+Z14 OL;L;2024.2;79
+r1
+!s85 0
+31
+Z15 !s108 1749201474.000000
+Z16 !s107 variance_unit.v|variance_epsilon_adder_unit.v|tree_level_pipelined_adder.v|top.v|testbench.v|tb_variance_unit.v|tb_variance_epsilon_adder_unit.v|tb_tree_level_pipelined_adder.v|tb_sqrt_non_restoring.v|tb_reciprocal_unit.v|tb_normalization_unit.v|tb_matrix_layer_norm.v|tb_layer_norm_top.v|tb_layer_norm_pe.v|tb_layer_norm_64x64_pipelined.v|tb_layer_norm_64.v|tb_final_application_unit.v|streaming_controller.v|sqrt_non_restoring.v|simple_matrix_layernorm.v|reciprocal_unit.v|normalization_unit.v|mean_calculation_unit.v|matrix_layer_norm_wrapper.v|matrix_layer_norm.v|layer_norm_top.v|layer_norm_tb.v|layer_norm_pe.v|layer_norm_64x64_pipelined.v|final_application_unit.v|debug_step_by_step.v|
+Z17 !s90 debug_step_by_step.v|final_application_unit.v|layer_norm_64x64_pipelined.v|layer_norm_pe.v|layer_norm_tb.v|layer_norm_top.v|matrix_layer_norm.v|matrix_layer_norm_wrapper.v|mean_calculation_unit.v|normalization_unit.v|reciprocal_unit.v|simple_matrix_layernorm.v|sqrt_non_restoring.v|streaming_controller.v|tb_final_application_unit.v|tb_layer_norm_64.v|tb_layer_norm_64x64_pipelined.v|tb_layer_norm_pe.v|tb_layer_norm_top.v|tb_matrix_layer_norm.v|tb_normalization_unit.v|tb_reciprocal_unit.v|tb_sqrt_non_restoring.v|tb_tree_level_pipelined_adder.v|tb_variance_epsilon_adder_unit.v|tb_variance_unit.v|testbench.v|top.v|tree_level_pipelined_adder.v|variance_epsilon_adder_unit.v|variance_unit.v|
+!i113 0
+Z18 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R10
+vfinal_application_unit
+R12
+!i10b 1
+!s100 E;?fig[BoHV3h:alG9h_;2
+ITKLGcP<39DIn0DK5=Y]7B1
+R4
+w1748769637
+8final_application_unit.v
+Ffinal_application_unit.v
+!i122 202
+L0 2 210
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vlayer_norm_64x64_pipelined
+R12
+!i10b 1
+!s100 47GnLz__E]kkazZma4VM43
+IkREkl>ZRBCOo:JCZ@=XBM0
+R4
+w1749187991
+8layer_norm_64x64_pipelined.v
+Flayer_norm_64x64_pipelined.v
+!i122 202
+L0 2 207
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vlayer_norm_64x64_pipelined_tb
+R12
+!i10b 1
+!s100 N2EV]G6UVi@fG=dLBm5_K2
+I?lg0i;?ER=oHn051MK]`32
+R4
+w1749189228
+Z19 8tb_layer_norm_64x64_pipelined.v
+Z20 Ftb_layer_norm_64x64_pipelined.v
+!i122 202
+Z21 L0 4 165
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vlayer_norm_pe
+R12
+!i10b 1
+!s100 ?:KP7n8lzH]3OJMV;HUN43
+IUdbQkL04D[A>ZT0oN?fG[1
+R4
+w1748849915
+8layer_norm_pe.v
+Flayer_norm_pe.v
+!i122 202
+Z22 L0 2 208
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vlayer_norm_tb
+Z23 !s110 1748839761
+!i10b 1
+!s100 9YiHB^P_0<AzN_l2UZf4d0
+I>^]c5SVXaZ@[79O;H?5fP0
+R4
+w1748820367
+8layer_norm_tb.v
+Flayer_norm_tb.v
+!i122 144
+L0 2 168
+R13
+R14
+r1
+!s85 0
+31
+Z24 !s108 1748839761.000000
+Z25 !s107 variance_unit.v|variance_epsilon_adder_unit.v|tree_level_pipelined_adder.v|tb_variance_unit.v|tb_variance_epsilon_adder_unit.v|tb_tree_level_pipelined_adder.v|tb_sqrt_non_restoring.v|tb_reciprocal_unit.v|tb_layer_norm_top.v|tb_layer_norm_pe.v|tb_final_application_unit.v|sqrt_non_restoring.v|reciprocal_unit.v|mean_calculation_unit.v|layer_norm_top.v|layer_norm_tb.v|layer_norm_pe.v|final_application_unit.v|debug_step_by_step.v|
+Z26 !s90 debug_step_by_step.v|final_application_unit.v|layer_norm_pe.v|layer_norm_tb.v|layer_norm_top.v|mean_calculation_unit.v|reciprocal_unit.v|sqrt_non_restoring.v|tb_final_application_unit.v|tb_layer_norm_pe.v|tb_layer_norm_top.v|tb_reciprocal_unit.v|tb_sqrt_non_restoring.v|tb_tree_level_pipelined_adder.v|tb_variance_epsilon_adder_unit.v|tb_variance_unit.v|tree_level_pipelined_adder.v|variance_epsilon_adder_unit.v|variance_unit.v|
+!i113 0
+R18
+R10
+vlayer_norm_top
+Z27 2top.v|streaming_controller.v|layer_norm_top.v|testbench.v
+Z28 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z29 !s110 1749200410
+!i10b 1
+!s100 f@ONo>li4R@Q77UmW9MV>2
+IaO8i^[^XOLJ_3=WoVI7ni2
+S1
+R4
+w1748852164
+8layer_norm_top.v
+Flayer_norm_top.v
+!i122 198
+L0 3 296
+R13
+R14
+r1
+!s85 0
+31
+Z30 !s108 1749200410.000000
+Z31 !s107 testbench.v|layer_norm_top.v|streaming_controller.v|top.v|
+Z32 !s90 -sv|top.v|streaming_controller.v|layer_norm_top.v|testbench.v|
+!i113 0
+Z33 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R10
+vmatrix_layer_norm
+R12
+!i10b 1
+!s100 gYmij6Mh<7Y<9aga52TUS1
+INUCdHc?S3H3j^V?KSBQz<2
+R4
+w1749194030
+8matrix_layer_norm.v
+Fmatrix_layer_norm.v
+!i122 202
+L0 2 182
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vmatrix_layer_norm_wrapper
+R12
+!i10b 1
+!s100 6Zk@km;jVJc8:NQV;KPk]1
+ImJ>MI6V=mgF<4;meojNgH2
+R4
+w1749192396
+8matrix_layer_norm_wrapper.v
+Fmatrix_layer_norm_wrapper.v
+!i122 202
+L0 2 238
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vmean_calculation_unit
+R12
+!i10b 1
+!s100 3b@fEzF7;cJ0eKY:HGORF1
+IOaMVTI_JZn2<HU<3be]ca3
+R4
+w1748820977
+8mean_calculation_unit.v
+Fmean_calculation_unit.v
+!i122 202
+L0 2 39
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vnormalization_unit
+R12
+!i10b 1
+!s100 Q9PY;AC7EWJ4?7<=`Cb=R3
+I_Qc4nDXne]EI0eo=9E3:G0
+R4
+w1748851155
+8normalization_unit.v
+Fnormalization_unit.v
+!i122 202
+L0 2 199
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vreciprocal_unit
+R12
+!i10b 1
+!s100 H2Bmo]bdN_keRPk:3O4Oc0
+IO_RWZ<jg6j3`JljhAb^1Z3
+R4
+w1748820603
+8reciprocal_unit.v
+Freciprocal_unit.v
+!i122 202
+L0 2 112
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vsimple_matrix_layernorm
+R12
+!i10b 1
+!s100 Mo293XC;WKk`[@S@n@8CU3
+I5GRfgHD<RGHIgWke<ICUO2
+R4
+Z34 w1749201420
+Z35 8simple_matrix_layernorm.v
+Z36 Fsimple_matrix_layernorm.v
+!i122 202
+L0 4 207
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vsqrt_non_restoring
+R12
+!i10b 1
+!s100 QhG1YoBWTKE@CDR57]=;?1
+IUiZbzNoU^oJ?l^_::R4Fl0
+R4
+R34
+8sqrt_non_restoring.v
+Fsqrt_non_restoring.v
+R35
+R36
+!i122 202
+L0 2 135
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vstreaming_controller
+R12
+!i10b 1
+!s100 @SJkLX5;Lf3]6d_:W;_Zj3
+I<fJ4W9HLf^EF02nLVNd=m2
+R4
+R34
+8streaming_controller.v
+Fstreaming_controller.v
+R35
+R36
+!i122 202
+L0 11 143
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vtb_final_application_unit
+R12
+!i10b 1
+!s100 koaRh=<?W[8WFUo<E_UR41
+I`[AF5lY<5QL=EYRC1GI_h3
+R4
+w1748816030
+8tb_final_application_unit.v
+Ftb_final_application_unit.v
+!i122 202
+L0 3 274
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vtb_layer_norm_64
+R12
+!i10b 1
+!s100 mg9E`LQ3a<ZUSU2E00z`N1
+IQD88i:ZFlPiXQ@?8n[:112
+R4
+w1749201449
+8tb_layer_norm_64.v
+Ftb_layer_norm_64.v
+!i122 202
+R21
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vtb_layer_norm_64x64_pipelined
+2tb_layer_norm_64x64_pipelined.v
+!s110 1749187220
+!i10b 1
+!s100 D0DPSU7n6il6Qf4lXhe]G1
+I6n9UKfeROPEkEU777bLb31
+R4
+w1749187217
+R19
+R20
+!i122 178
+L0 4 182
+R13
+R14
+r1
+!s85 0
+31
+!s108 1749187220.000000
+!s107 tb_layer_norm_64x64_pipelined.v|
+!s90 tb_layer_norm_64x64_pipelined.v|
+!i113 0
+R18
+R10
+vtb_layer_norm_pe
+R12
+!i10b 1
+!s100 feRa1G]bk<0a>IH]fb@6E2
+IfVJ@n;Y@=Z4kS[e6nlP`N1
+R4
+w1748809180
+8tb_layer_norm_pe.v
+Ftb_layer_norm_pe.v
+!i122 202
+L0 4 130
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vtb_layer_norm_top
+R12
+!i10b 1
+!s100 WT>o>el?dl2jMWJ<zN>O=2
+I?NBa8]g[j3U9fh@M[@S=G3
+R4
+w1749201424
+8tb_layer_norm_top.v
+Ftb_layer_norm_top.v
+!i122 202
+L0 4 366
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vtb_matrix_layer_norm
+R12
+!i10b 1
+!s100 QYF>5eNQ1P]o8YbaYHZWC0
+IzQ]B3WXS7O6SXDhVJ^H1A1
+R4
+Z37 w1749193814
+Z38 8tb_matrix_layer_norm.v
+Z39 Ftb_matrix_layer_norm.v
+!i122 202
+L0 4 172
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vtb_normalization_unit
+R12
+!i10b 1
+!s100 ?oFbPa=5<CSjg:O2]O=UE2
+I;8Zl@RE1CTkLN=zYX=Cbi2
+R4
+R37
+8tb_normalization_unit.v
+Ftb_normalization_unit.v
+R38
+R39
+!i122 202
+R22
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vtb_reciprocal_unit
+R12
+!i10b 1
+!s100 BiB@@IAo_^Fl=Knh]?kbB2
+I5:H1I[2M@:0IDVWjNf5nm0
+R4
+w1748680746
+8tb_reciprocal_unit.v
+Ftb_reciprocal_unit.v
+!i122 202
+L0 5 98
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vtb_sqrt_non_restoring
+R12
+!i10b 1
+!s100 IgP>X82ke9B>DjgIaNkM70
+IMQ_5O9V@W8j7bE;b_UoVf3
+R4
+w1748675895
+8tb_sqrt_non_restoring.v
+Ftb_sqrt_non_restoring.v
+!i122 202
+L0 4 101
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vtb_tree_level_pipelined_adder
+R12
+!i10b 1
+!s100 DYNCB>3:oAS6>Y0FXonI90
+I:lAz5bOU6zATL^005HNZF2
+R4
+w1748577628
+8tb_tree_level_pipelined_adder.v
+Ftb_tree_level_pipelined_adder.v
+!i122 202
+L0 6 406
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vtb_variance_epsilon_adder_unit
+R12
+!i10b 1
+!s100 U4=g8^H:H@IPg01fN15E;2
+IojQgQUP<UjAfb]2Kni35N1
+R4
+w1748807867
+8tb_variance_epsilon_adder_unit.v
+Ftb_variance_epsilon_adder_unit.v
+!i122 202
+L0 4 100
+R13
+R14
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 0
+R18
+R10
+vtb_variance_unit
+2variance_unit.v|tb_variance_unit.v
+R28
+!s110 1748662901
+!i10b 1
+!s100 >faf1S1FDbZnzJh>F;cnG3
+ISHKT15AjKmnhBFKzb_^0l3
+S1
+R4
+Z40 w1748662874
+Z41 8tb_variance_unit.v
+Z42 Ftb_variance_unit.v
+!i122 17
+L0 3 128
+R13
+R14
+r1
+!s85 0
+31
+!s108 1748662901.000000
+!s107 tb_variance_unit.v|variance_unit.v|
+!s90 -sv|variance_unit.v|tb_variance_unit.v|
+!i113 0
+R33
+R10
+vtestbench
+R27
+R28
+R29
+!i10b 1
+!s100 >e4MUPh=YT6EKAcMAUIhP0
+IZ5F9=Fz@ZmB=D><eW73P;1
+S1
+R4
+w1749200407
+8testbench.v
+Ftestbench.v
+!i122 198
+L0 9 90
+R13
+R14
+r1
+!s85 0
+31
+R30
+R31
+R32
+!i113 0
+R33
+R10
+vtop
+R27
+R28
+R29
+!i10b 1
+!s100 91DzeJ3_j<mCVzn01_39m3
+IicIPlN6Df]H@ON=QWi0463
+S1
+R4
+w1749200356
+8top.v
+Ftop.v
+!i122 198
+L0 9 65
+R13
+R14
+r1
+!s85 0
+31
+R30
+R31
+R32
+!i113 0
+R33
+R10
+vtree_level_pipelined_adder
+R23
+!i10b 1
+!s100 VhAdH4>CgbHINHR8nYmiO0
+IGnR0nADEocfEFjYcm@`HF3
+R4
+R40
+8tree_level_pipelined_adder.v
+Ftree_level_pipelined_adder.v
+R41
+R42
+!i122 144
+L0 4 119
+R13
+R14
+r1
+!s85 0
+31
+R24
+R25
+R26
+!i113 0
+R18
+R10
+vvariance_epsilon_adder_unit
+R23
+!i10b 1
+!s100 `IF0_4F5TV9CHUXi5P1FC3
+IXBH_GOZJZ`[GEkHJ=::3Z2
+R4
+w1748807738
+8variance_epsilon_adder_unit.v
+Fvariance_epsilon_adder_unit.v
+R41
+R42
+!i122 144
+L0 3 50
+R13
+R14
+r1
+!s85 0
+31
+R24
+R25
+R26
+!i113 0
+R18
+R10
+vvariance_unit
+R23
+!i10b 1
+!s100 Rfz_mA>:NRikMiR@Nzf]Y3
+I7eCchY^N]dWj4j9Xg]>A<0
+R4
+R40
+8variance_unit.v
+Fvariance_unit.v
+R41
+R42
+!i122 144
+L0 4 136
+R13
+R14
+r1
+!s85 0
+31
+R24
+R25
+R26
+!i113 0
+R18
+R10

@@ -1,96 +1,109 @@
-# Challenge #3 
+# Challenge #3
+
 **Eric Zhou**  
 **April 13, 2025**
 
-Challenge #3
-Use the power of the internet and of LLMs to identify a physical system that solves differential equations inherently, through its physical properties, without executing instructions as a traditional processor does.
+## Challenge Overview
 
-In this challenge, we discover any natural system to solve the differential equations, without any use of digital logic, CPUs, or stored instructions.
+Leverage the power of the internet and large language models (LLMs) to identify physical systems that inherently solve differential equations through their physical properties—without executing instructions like a traditional processor.
 
-Based on searching and asking around gpt and internet:
-RC / RLC Circuits -1st/2nd-order ODEs
-RC
-  V_in(t)
-   ┌───┬────R────┬────┐
-   │   │         │    │
-   │  (+)       [C]   │
-   │   │         │    │
-   └───┴─────────┴────┘
-               V_out(t)
+The goal: Discover natural or engineered systems that solve differential equations without digital logic, CPUs, or stored instructions.
 
-1. **Kirchhoff’s Voltage Law:**
-   \[
-   V_{\text{in}}(t) = V_R(t) + V_C(t)
-   \]
+---
 
-2. **Ohm’s Law:**  
-   \( V_R = i \cdot R \)
+## Examples of Physical Systems Solving Differential Equations
 
-3. **Capacitor Relationship:**  
-   \( i = C \frac{dV_C}{dt} \)
+### 1. RC and RLC Circuits
 
-4. **Substitute:**
-   \[
-   V_{\text{in}}(t) = RC \frac{dV_C}{dt} + V_C(t)
-   \]
+#### RC Circuit (First-Order ODE)
+
+An RC circuit (resistor and capacitor in series) inherently solves a first-order linear ordinary differential equation (ODE):
+
+```
+V_in(t)
+ ┌───┬────R────┬────┐
+ │   │         │    │
+ │  (+)       [C]   │
+ │   │         │    │
+ └───┴─────────┴────┘
+          V_out(t)
+```
+
+- **Kirchhoff’s Voltage Law:**  
+  \[
+  V_{\text{in}}(t) = V_R(t) + V_C(t)
+  \]
+- **Ohm’s Law:**  
+  \( V_R = i \cdot R \)
+- **Capacitor Current-Voltage Relationship:**  
+  \( i = C \frac{dV_C}{dt} \)
+- **Combined:**  
+  \[
+  V_{\text{in}}(t) = RC \frac{dV_C}{dt} + V_C(t)
+  \]
 
 This is a **first-order linear ODE**.
 
-RLC circuit
-A resistor (R), inductor (L), and capacitor (C) in series:
+---
 
-1. Apply KVL:
-   \[
-   V_{\text{in}}(t) = V_R + V_L + V_C
-   \]
+#### RLC Circuit (Second-Order ODE)
 
-2. Component Laws:
-   - \( V_R = iR \)
-   - \( V_L = L \frac{di}{dt} \)
-   - \( V_C = \frac{1}{C} \int i \, dt \)
+A series RLC circuit (resistor, inductor, capacitor) solves a second-order linear ODE:
 
-3. Differentiate both sides:
-   \[
-   \frac{dV_{\text{in}}}{dt} = R \frac{di}{dt} + L \frac{d^2i}{dt^2} + \frac{i}{C}
-   \]
-
-Or rearranged:
-   \[
-   L \frac{d^2 i}{dt^2} + R \frac{di}{dt} + \frac{1}{C} i = \frac{dV_{\text{in}}}{dt}
-   \]
+- **KVL:**  
+  \[
+  V_{\text{in}}(t) = V_R + V_L + V_C
+  \]
+- **Component Laws:**  
+  - \( V_R = iR \)
+  - \( V_L = L \frac{di}{dt} \)
+  - \( V_C = \frac{1}{C} \int i \, dt \)
+- **Differentiated:**  
+  \[
+  L \frac{d^2 i}{dt^2} + R \frac{di}{dt} + \frac{1}{C} i = \frac{dV_{\text{in}}}{dt}
+  \]
 
 This is a **second-order linear ODE**.
 
 ---
 
-Op-Amp Analog Computers - Arbitrary linear/nonlinear ODEs
+### 2. Op-Amp Analog Computers
 
-   [INPUT u(t)] --> [×c gain amp] --+
-                                    |
-                                [SUMMING NODE]
-                                /     |     \
-                               ↓      ↓      ↓
-                            -a×dx   -b×x   → d²x/dt²
-                                |      |       ↓
-                                |      |   [INTEGRATOR]
-                                |      |       ↓
-                            [GAIN]  [GAIN]   [dx/dt]
-                                |      |       ↓
-                                +------┴----> [INTEGRATOR] --> x(t)
+Op-amp-based analog computers can solve arbitrary linear and some nonlinear ODEs by configuring networks of amplifiers, summers, and integrators:
 
+```
+[INPUT u(t)] --> [×c gain amp] --+
+                         |
+                      [SUMMING NODE]
+                      /     |     \
+                     ↓      ↓      ↓
+                   -a×dx   -b×x   → d²x/dt²
+                      |      |       ↓
+                      |      |   [INTEGRATOR]
+                      |      |       ↓
+                   [GAIN]  [GAIN]   [dx/dt]
+                      |      |       ↓
+                      +------┴----> [INTEGRATOR] --> x(t)
+```
 
-Water Tank System -Rate equations (ODEs)
+---
 
-Imagine a vertical cylindrical water tank with inflow and outflow.
+### 3. Water Tank System
 
-Mechanical Integrators (e.g., Ball-and-Disk) ∫f(t)dt
+A vertical cylindrical water tank with inflow and outflow models rate equations (ODEs) through fluid dynamics. The water level changes according to the difference between inflow and outflow rates, inherently solving a first-order ODE.
 
+---
 
-Use physical motion — such as rotation, position, and friction — to represent mathematical variables and perform integration through geometry and kinematics.
+### 4. Mechanical Integrators
 
-Completely mechanical — no electricity or logic circuits!
+Mechanical devices (e.g., ball-and-disk integrators) use physical motion—rotation, position, and friction—to represent variables and perform integration:
 
-Used in WWII fire-control computers to calculate projectile trajectories.
+- Entirely mechanical—no electricity or logic circuits.
+- Used in WWII fire-control computers for real-time trajectory calculations.
+- Solves integration continuously and in real time.
 
-Solves integration in real time, continuous and accurate (for its time).
+---
 
+## Summary
+
+Physical systems—electrical, mechanical, and fluidic—can inherently solve differential equations by exploiting their natural laws, offering real-time, continuous solutions without digital computation.

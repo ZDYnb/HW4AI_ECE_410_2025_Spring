@@ -3,130 +3,33 @@
 **April 13, 2025 -**
 Topic choice: implementing TinyGPT LLMs on a chiplet
 
-Heilmeier Questions
-What are you trying to do? Articulate your objectives using absolutely no jargon.
-I am trying to design a chiplet accelerator for the key computing part of a Transformer. I will use a well-known GPT code repository—nanoGPT—as my reference. Eventually, I will test a small model running on this chiplet and compare its performance with a CPU and some GPU.
+Here in Challenge #9, I profiled the Python workflow for my project.
+The framework I chose is based on TinyGPT. Their code is known for being clean and easy to read, which made it a great starting point. I selected the smallest model (124M) for my project 
 
-How is it done today, and what are the limits of current practice?
-Today, LLMs are usually trained and run on GPUs, which are powerful but expensive and consume a lot of power. GPUs can handle many types of neural networks, but they may not be that efficient for every specific operation.
+In this challenge, I actually did 2 attempts — as you can see in the folder, I created 2 subfolders. The first one is actual GPT2, where I made a more complete run. I tried as many of the tools mentioned in the instructions as I could. You can check my Code/Progress/transformer.ipynb file inside for a more modular test.
 
-What is new in your approach and why do you think it will be successful?
-Instead of using general-purpose devices, I want to explore the feasibility of running Transformers on a specially designed chip. I believe this will be successful because language models rely heavily on this computation block. If we can optimize it, the overall cost and power usage could be significantly reduced.
+Overall, the profiling result matches our expectation:
+the parts of the computation that benefit the most from acceleration are blocks that run repeatedly and have parallelism or pipeline potential. If a block is heavily reused, it’s totally worth pulling it out for hardware co-design. On the other hand, if the computation is lightweight or one-off, it might not be worth the effort to build a dedicated accelerator.
 
-Who cares? If you are successful, what difference will it make?
-If I can achieve this, I believe future employers and professors will be impressed, since accelerating LLMs is a hot topic right now.
+In the GPT2 structure, the repeating unit is clearly the Transformer block. Even in the smallest version (124M), the transformer block repeats 12 times — each time processing with different weights. So this repeating structure is the most promising candidate for acceleration.
 
-What are the risks?
-This could be very difficult, since I’ve never gone through a complete ASIC design process before, and I’m not yet very familiar with the Transformer architecture. Most of the time consumption may actually come from data movement. It might still be hard to beat the speed of modern GPUs, as they’ve already been optimized a lot—but I think it’s worth trying, and I’m curious to see what I can learn.
+Profiling is indeed a very useful tool to visualize bottlenecks and verify our assumptions.
+But personally, I think real bottlenecks should already be observable from just reading the source algorithm itself — profiling isn’t “plug-and-play” magic. It works best when you already have some hypothesis and want to confirm it.
 
-How much will it cost?
-For software, it will cost $0—I’ll either use campus-provided tools or open-source ones.
-For hardware verification, it might also be $0, since I plan to use the capstone lab’s FPGA.
+Most modern LLM code is modular, clean, and class-based — and often wrapped in libraries. But for profiling to work well, it ideally wants to trace from top to bottom in a full run. So you really need to understand the algorithm well before you profile.
 
-How long will it take?
-I will learn while building. I think it’s worthwhile to spend the rest of the term (around 7 weeks) on this project.
+However, when I started trying to map my accelerator ideas into Verilog, I ran into problems.
+I initially tried to work with large matrix multiplications — like 786×786 — but it quickly became unmanageable. I wasn’t confident progressing further with that scale, especially given my current skills and the complexity of debugging such large modules.
 
-What are the mid-term and final “exams” to check for success?
-Mid-term: Get simulation results working.
-Final: Demonstrate the chiplet running with real test data and compare the performance with CPU/GPU.
+Even though I had already put in a lot of effort, the design became too messy and hard to test.
+So I decided to take a step back and simplify the design: instead of scaling up, I scaled really down.
 
-I launch my initial test below in deployment mode:
+I shifted my focus to building a tiny 16×16 transformer, processing only a small matrix block at a time.
+Given my current skillset, I felt this was the maximum complexity I could realistically manage.
+By scaling down the design, I hoped to walk through the full design iteration — from software profiling to RTL implementation — without getting stuck in massive debugging loops.
 
-I run below in the shell:
-python sample.py --init_from=gpt2 --start="What is the answer to life, the universe, and everything?" --num_samples=5 --max_new_tokens=100   
+I also realized that even with GPT's help, I couldn’t make meaningful progress on large designs without solid ASIC fundamentals. GPT can assist with syntax, structure, and even some design ideas, but once things get complicated — especially in debugging — real hardware experience becomes essential.
 
-generating first inital result:
-(baseconda activate nanogptE_410_2025_Spring\Challenge_lists\Challenge#9\Code\nanoGPT>
-(nanogpt) PS D:\AI4Hardware_ECE_410_2025_Spring\Challenge_lists\Challenge#9\Code\nanoGPT> python sample.py --init_from=gpt2 --start="What is the answer to life, the universe, and everything?" --num_samples=5 --max_new_tokens=100
-Overriding: init_from = gpt2
-Overriding: start = What is the answer to life, the universe, and everything?
-Overriding: num_samples = 5
-Overriding: max_new_tokens = 100
-loading weights from pretrained gpt: gpt2
-forcing vocab_size=50257, block_size=1024, bias=True
-overriding dropout rate to 0.0
-number of parameters: 123.65M
-No meta.pkl found, assuming GPT-2 encodings...
-⏱️ Sample 1 | Time: 2.734s | 100 tokens | 27.34 ms/token
-What is the answer to life, the universe, and everything? Have any of the answers to life have anything to do with God?   
-
-What is the answer to life? Have any of the answers to life have anything to do with God? Could there be a God?
-
-Could there be a God? What is the future?
-
-What is the future? Are there any problems with the universe?
-
-
-I am a Christian.
-
-I am a Christian. I'm a Christian. I've never participated in any religion.
-
-
----------------
-⏱️ Sample 2 | Time: 1.848s | 100 tokens | 18.48 ms/token
-What is the answer to life, the universe, and everything?<|endoftext|>Prime Minister John Key faces a potential deal with Labour MPs who accused him of "double standards" by promising to continue a Labour government funded by taxpayers.        
-
-Key's election strategy would include a "major increase in spending on public services", as well as a promise that all MPs would be paid 1 per cent of wages.
-
-The pledge is a dig at Mr Miliband's claim, which is based on a study last month which found that the government's public services were spending more on public
----------------
-⏱️ Sample 3 | Time: 1.847s | 100 tokens | 18.47 ms/token
-What is the answer to life, the universe, and everything?
-
-
-Notes's previous articles on the subject have provided some excellent historical analysis.
-
-Some of your previous articles, posted by Michael Fassbender for The New York Times, appear in The New York Times Magazine.
-
-
-Please note that The New York Times' 'Daily Digest' section is not endorsed by the Society of Professional Journalists. Content contained in this section may be found elsewhere on the Internet.<|endoftext|>The M83's are designed to take their name from a French M83-R
----------------
-⏱️ Sample 4 | Time: 1.870s | 100 tokens | 18.70 ms/token
-What is the answer to life, the universe, and everything? Just as the scriptures instructs us to love and obey God, so the scriptures teach us to believe in and obey God. If we believe in God, why do we believe in others? Does God put a stop to our faith in God? Is God willing to give us the information we need to be fully spiritual beings? Is God willing to make us gain the benefit of their eternal existence? Why, then, do we worship God so much? Because we are His creatures. The scriptures tell us
----------------
-⏱️ Sample 5 | Time: 1.829s | 100 tokens | 18.29 ms/token
-What is the answer to life, the universe, and everything? This question has been raised in many of the ancient cultures where ancient gods were often worshipped, but many people have an erroneous view…
-
-(We should probably ask a few questions here and there to see what he knows about the ancient gods and what they stand for)
-
-Why does it seem that someone who claims that there is something supernatural is not right? Why is there such a huge difference in how we think about the universe? Are all the gods fair and decent? This is something very
----------------
-
-✅ Benchmark Summary:
-Total time: 10.135 seconds
-Average per sample: 2.027 seconds
-Average per token: 20.27 ms/token
-Tokens per second: 49.34 tokens/s
-
-I do 5 sample test, benchmark sumary as shown above!
-
-After initial benchmark, I got a sense of my runing gpt2. It runs sample as a test and acutually generate the token through its output. Token by token, the generating sentence forms!
-
-To better my sense of how really the token pop up and sample generated, I use a .ipynb file to line by line dig into my source code. Reconstruct code in ipynb allow me to explore the code struction in a more clear way, other than switching back and forth in different source code folder. You can find my process of analysis of nanogpt code construction in Code/Progress folder.
-
-👉 View full notebook output and progress here:  
-[Code/Progress/Transformer.md](Code/Progress/README.md)
-
-Key achievement:
-
-
-
-
-
-Trial with GPT:
-
-Pretty bad, and ugly result - suffering 
-回答非常谄媚
-
-
-
-Come back to learn some basic for a while that I could identify the errors and the flow at least
-
-
-Trial with GeminiL
-
-Really encouraging reply. After I brefily introduce my model and optimized componets for Gemini good
-
-Overall Goal for Iteration 1:
-Design, implement, and test the fundamental building block for matrix multiplication: a Multiply-Accumulate (MAC) unit and then a simple Dot Product Unit. This will form the heart of your GEMM (General Matrix Multiply) operations needed for all linear layers and attention calculations in GPT-2.
+You can find the corresponding profiler notebook inside the tiny_transformer.ipynb folder.
+It documents the reasoning behind my scale-back decision, includes detailed profiling data for the simplified transformer block, and later served as a reference for both RTL module design and performance comparison.
 

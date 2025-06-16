@@ -1,0 +1,166 @@
+# vlog *.v
+# QuestaSim-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+# Start time: 02:17:54 on Jun 06,2025
+# vlog debug_step_by_step.v final_application_unit.v layer_norm_64x64_pipelined.v layer_norm_pe.v layer_norm_tb.v layer_norm_top.v matrix_layer_norm.v matrix_layer_norm_wrapper.v mean_calculation_unit.v normalization_unit.v reciprocal_unit.v simple_matrix_layernorm.v sqrt_non_restoring.v streaming_controller.v tb_final_application_unit.v tb_layer_norm_64.v tb_layer_norm_64x64_pipelined.v tb_layer_norm_pe.v tb_layer_norm_top.v tb_matrix_layer_norm.v tb_normalization_unit.v tb_reciprocal_unit.v tb_sqrt_non_restoring.v tb_tree_level_pipelined_adder.v tb_variance_epsilon_adder_unit.v tb_variance_unit.v testbench.v top.v tree_level_pipelined_adder.v variance_epsilon_adder_unit.v variance_unit.v 
+# -- Compiling module debug_step_by_step
+# -- Compiling module final_application_unit
+# -- Compiling module layer_norm_64x64_pipelined
+# -- Compiling module layer_norm_pe
+# -- Compiling module tb_layer_norm_top
+# ** Error: layer_norm_tb.v(170): Declarations not allowed in unnamed block.
+# ** Error: layer_norm_tb.v(171): Declarations not allowed in unnamed block.
+# ** Error: layer_norm_tb.v(172): Declarations not allowed in unnamed block.
+# ** Error: layer_norm_tb.v(174): Illegal declaration after the statement near line '169'.  Declarations must precede statements.  Look for stray semicolons.
+# ** Error: (vlog-13069) layer_norm_tb.v(178): near "else": syntax error, unexpected else.
+# ** Error: layer_norm_tb.v(180): (vlog-13161) unexpected '$display'
+# ** Error: layer_norm_tb.v(181): (vlog-13161) unexpected '$display'
+# ** Error: (vlog-13069) layer_norm_tb.v(183): near "end": syntax error, unexpected end.
+# ** Error: layer_norm_tb.v(187): (vlog-13161) unexpected '$finish'
+# ** Error: (vlog-13069) layer_norm_tb.v(188): near "end": syntax error, unexpected end.
+# ** Error: layer_norm_tb.v(193): (vlog-13161) unexpected '$display'
+# ** Error: layer_norm_tb.v(194): (vlog-13161) unexpected '$finish'
+# ** Error: (vlog-13069) layer_norm_tb.v(195): near "end": syntax error, unexpected end.
+# ** Error: layer_norm_top.v(73): (vlog-2730) Undefined variable: 'INTERNAL_X_WIDTH'.
+# ** Error: layer_norm_top.v(76): (vlog-2730) Undefined variable: 'ADDER_OUTPUT_WIDTH'.
+# ** Error: layer_norm_top.v(78): (vlog-2730) Undefined variable: 'MEAN_CALC_OUT_WIDTH'.
+# ** Error: layer_norm_top.v(90): (vlog-2730) Undefined variable: 'VARIANCE_UNIT_OUT_WIDTH'.
+# ** Error: layer_norm_top.v(95): (vlog-2730) Undefined variable: 'VAR_EPS_DATA_WIDTH'.
+# ** Error: layer_norm_top.v(99): (vlog-2730) Undefined variable: 'SQRT_FINAL_OUT_WIDTH'.
+# ** Error: layer_norm_top.v(103): (vlog-2730) Undefined variable: 'RECIP_FINAL_OUT_WIDTH'.
+# ** Error: layer_norm_top.v(120): (vlog-2730) Undefined variable: 'INTERNAL_X_FRAC'.
+# -- Compiling module matrix_layer_norm
+# -- Compiling module matrix_layer_norm_wrapper
+# -- Compiling module mean_calculation_unit
+# -- Compiling module normalization_unit
+# -- Compiling module reciprocal_unit
+# -- Compiling module simple_matrix_layernorm
+# -- Compiling module sqrt_non_restoring
+# -- Compiling module streaming_controller
+# -- Compiling module tb_final_application_unit
+# -- Compiling module tb_layer_norm_64
+# -- Compiling module layer_norm_64x64_pipelined_tb
+# -- Compiling module tb_layer_norm_pe
+# -- Compiling module tb_layer_norm_top
+# ** Warning: tb_layer_norm_top.v(4): (vlog-2275) Existing module 'tb_layer_norm_top' at layer_norm_tb.v(2) will be overwritten.
+# -- Compiling module tb_matrix_layer_norm
+# -- Compiling module tb_normalization_unit
+# -- Compiling module tb_reciprocal_unit
+# -- Compiling module tb_sqrt_non_restoring
+# -- Compiling module tb_tree_level_pipelined_adder
+# -- Compiling module tb_variance_epsilon_adder_unit
+# -- Compiling module tb_variance_unit
+# ** Error: (vlog-13069) tb_variance_unit.v(102): near "iff": syntax error, unexpected IDENTIFIER, expecting or or ')' or ','.
+# -- Compiling module testbench
+# ** Error: (vlog-13027) testbench.v(74): near "col": Syntax error. 'for' loop variable declaration only allowed in SystemVerilog.
+# ** Error: testbench.v(74): (vlog-2730) Undefined variable: 'col'.
+# ** Error: (vlog-13069) testbench.v(74): near ")": syntax error, unexpected ')', expecting ';'.
+# ** Error: (vlog-13069) testbench.v(80): near "end": syntax error, unexpected end, expecting join or "SystemVerilog keyword 'join_any'" or "SystemVerilog keyword 'join_none'".
+# ** Error: (vlog-13027) testbench.v(87): near "word_idx": Syntax error. 'for' loop variable declaration only allowed in SystemVerilog.
+# ** Error: testbench.v(87): (vlog-2730) Undefined variable: 'word_idx'.
+# ** Error: (vlog-13069) testbench.v(87): near ")": syntax error, unexpected ')', expecting ';'.
+# ** Error: testbench.v(91): (vlog-2730) Undefined variable: 'col_num'.
+# ** Error: (vlog-13069) testbench.v(95): near "end": syntax error, unexpected end, expecting join or "SystemVerilog keyword 'join_any'" or "SystemVerilog keyword 'join_none'".
+# ** Error: top.v(22): (vlog-13282) 'D_MODEL' already declared in this scope.
+# ** Error: top.v(22): Declarations not allowed in unnamed block.
+# ** Error: top.v(23): (vlog-13282) 'DATA_WIDTH' already declared in this scope.
+# ** Error: top.v(23): Declarations not allowed in unnamed block.
+# ** Error: top.v(26): Illegal declaration after the statement near line '19'.  Declarations must precede statements.  Look for stray semicolons.
+# ** Error: top.v(34): (vlog-2730) Undefined variable: 'streaming_controller'.
+# ** Error: top.v(54): (vlog-2730) Undefined variable: 'layer_norm_top'.
+# ** Error: tree_level_pipelined_adder.v(22): (vlog-13282) 'D_MODEL' already declared in this scope.
+# ** Error: tree_level_pipelined_adder.v(22): Declarations not allowed in unnamed block.
+# ** Error: tree_level_pipelined_adder.v(23): Declarations not allowed in unnamed block.
+# ** Error: tree_level_pipelined_adder.v(24): Declarations not allowed in unnamed block.
+# ** Error: tree_level_pipelined_adder.v(25): Declarations not allowed in unnamed block.
+# ** Error: tree_level_pipelined_adder.v(26): Declarations not allowed in unnamed block.
+# ** Error: tree_level_pipelined_adder.v(31): Declarations not allowed in unnamed block.
+# ** Error: tree_level_pipelined_adder.v(34): Illegal declaration after the statement near line '17'.  Declarations must precede statements.  Look for stray semicolons.
+# ** Error: tree_level_pipelined_adder.v(39): (vlog-2730) Undefined variable: 'unpack_i'.
+# ** Error: (vlog-13069) tree_level_pipelined_adder.v(39): near ")": syntax error, unexpected ')', expecting ';'.
+# ** Error: tree_level_pipelined_adder.v(46): Declarations not allowed in unnamed block.
+# ** Error: tree_level_pipelined_adder.v(51): Illegal declaration after the statement near line '45'.  Declarations must precede statements.  Look for stray semicolons.
+# ** Error: (vlog-13069) tree_level_pipelined_adder.v(57): near "end": syntax error, unexpected end, expecting join or "SystemVerilog keyword 'join_any'" or "SystemVerilog keyword 'join_none'".
+# ** Error: tree_level_pipelined_adder.v(60): (vlog-2730) Undefined variable: 'start'.
+# ** Error: tree_level_pipelined_adder.v(63): (vlog-2730) Undefined variable: 'tree_data'.
+# ** Error: tree_level_pipelined_adder.v(63): (vlog-2730) Undefined variable: 'data_in'.
+# ** Error: (vlog-13069) tree_level_pipelined_adder.v(67): near "end": syntax error, unexpected end, expecting join or "SystemVerilog keyword 'join_any'" or "SystemVerilog keyword 'join_none'".
+# ** Error: tree_level_pipelined_adder.v(75): (vlog-2730) Undefined variable: 'level'.
+# ** Error: (vlog-13069) tree_level_pipelined_adder.v(75): near ")": syntax error, unexpected ')', expecting ';'.
+# ** Error: (vlog-13069) tree_level_pipelined_adder.v(85): near "end": syntax error, unexpected end, expecting join or "SystemVerilog keyword 'join_any'" or "SystemVerilog keyword 'join_none'".
+# ** Error: tree_level_pipelined_adder.v(89): (vlog-2730) Undefined variable: 'NODES_THIS_LEVEL'.
+# ** Error: (vlog-13069) tree_level_pipelined_adder.v(98): near "end": syntax error, unexpected end, expecting join or "SystemVerilog keyword 'join_any'" or "SystemVerilog keyword 'join_none'".
+# ** Error: (vlog-13069) tree_level_pipelined_adder.v(110): near "end": syntax error, unexpected end, expecting join or "SystemVerilog keyword 'join_any'" or "SystemVerilog keyword 'join_none'".
+# ** Error: tree_level_pipelined_adder.v(112): (vlog-2730) Undefined variable: 'sum_valid'.
+# ** Error: (vlog-13069) tree_level_pipelined_adder.v(113): near "end": syntax error, unexpected end, expecting join or "SystemVerilog keyword 'join_any'" or "SystemVerilog keyword 'join_none'".
+# ** Error: variance_epsilon_adder_unit.v(24): (vlog-2730) Undefined variable: 'epsilon_fixed_point_w'.
+# ** Error: variance_epsilon_adder_unit.v(24): (vlog-2730) Undefined variable: 'EPSILON_INT_VAL'.
+# ** Error: variance_epsilon_adder_unit.v(24): LHS in procedural continuous assignment may not be a net: epsilon_fixed_point_w.
+# ** Error: (vlog-13069) variance_epsilon_adder_unit.v(29): near "wire": syntax error, unexpected wire.
+# ** Error: variance_epsilon_adder_unit.v(34): (vlog-2730) Undefined variable: 'sum_comb_w'.
+# ** Error: variance_epsilon_adder_unit.v(34): (vlog-2730) Undefined variable: 'variance_in'.
+# ** Error: variance_epsilon_adder_unit.v(34): LHS in procedural continuous assignment may not be a net: sum_comb_w.
+# ** Error: (vlog-13069) variance_epsilon_adder_unit.v(37): near "always": syntax error, unexpected always.
+# ** Error: (vlog-13069) variance_epsilon_adder_unit.v(41): near "end": syntax error, unexpected end, expecting join or "SystemVerilog keyword 'join_any'" or "SystemVerilog keyword 'join_none'".
+# ** Error: variance_epsilon_adder_unit.v(43): (vlog-2730) Undefined variable: 'variance_valid_in'.
+# ** Error: variance_epsilon_adder_unit.v(44): (vlog-2730) Undefined variable: 'var_plus_eps_out'.
+# ** Error: (vlog-13069) variance_epsilon_adder_unit.v(49): near "end": syntax error, unexpected end, expecting join or "SystemVerilog keyword 'join_any'" or "SystemVerilog keyword 'join_none'".
+# ** Error: (vlog-13069) variance_unit.v(34): near ")": syntax error, unexpected ')', expecting ';'.
+# ** Error: variance_unit.v(41): Declarations not allowed in unnamed block.
+# ** Error: variance_unit.v(42): Declarations not allowed in unnamed block.
+# ** Error: variance_unit.v(43): Illegal declaration after the statement near line '40'.  Declarations must precede statements.  Look for stray semicolons.
+# ** Error: variance_unit.v(46): (vlog-2730) Undefined variable: 'NUM_PE'.
+# ** Error: variance_unit.v(46): Declarations not allowed in unnamed block.
+# ** Error: variance_unit.v(47): Illegal declaration after the statement near line '43'.  Declarations must precede statements.  Look for stray semicolons.
+# ** Error: variance_unit.v(51): (vlog-2730) Undefined variable: 'INTERNAL_WIDTH'.
+# ** Error: variance_unit.v(51): Declarations not allowed in unnamed block.
+# ** Error: variance_unit.v(57): Illegal declaration after the statement near line '48'.  Declarations must precede statements.  Look for stray semicolons.
+# ** Error: variance_unit.v(59): (vlog-2730) Undefined variable: 'pe_i'.
+# ** Error: (vlog-13069) variance_unit.v(59): near ")": syntax error, unexpected ')', expecting ';'.
+# ** Error: variance_unit.v(62): (vlog-2730) Undefined variable: 'pe_square'.
+# ** Error: variance_unit.v(62): (vlog-2730) Undefined variable: 'pe_diff'.
+# ** Error: variance_unit.v(62): LHS in procedural continuous assignment may not be a net: pe_square.
+# ** Error: (vlog-13069) variance_unit.v(63): near "end": syntax error, unexpected end, expecting join or "SystemVerilog keyword 'join_any'" or "SystemVerilog keyword 'join_none'".
+# ** Error: (vlog-13069) variance_unit.v(86): near "end": syntax error, unexpected end, expecting join or "SystemVerilog keyword 'join_any'" or "SystemVerilog keyword 'join_none'".
+# ** Error: variance_unit.v(90): (vlog-2730) Undefined variable: 'start_variance'.
+# ** Error: variance_unit.v(93): (vlog-2730) Undefined variable: 'round_counter'.
+# ** Error: variance_unit.v(98): (vlog-2730) Undefined variable: 'i'.
+# ** Error: variance_unit.v(132): (vlog-2730) Undefined variable: 'variance_out'.
+# ** Error: variance_unit.v(133): (vlog-2730) Undefined variable: 'variance_valid'.
+# ** Error: (vlog-13069) variance_unit.v(136): near "end": syntax error, unexpected end, expecting join or "SystemVerilog keyword 'join_any'" or "SystemVerilog keyword 'join_none'".
+# End time: 02:17:54 on Jun 06,2025, Elapsed time: 0:00:00
+# Errors: 98, Warnings: 1
+# /pkgs/mentor/questa/2024.2/questasim/linux_x86_64/vlog failed.
+#  vsim tb_layer_norm_64
+# vsim tb_layer_norm_64 
+# Start time: 02:17:54 on Jun 06,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# //  Questa Sim-64
+# //  Version 2024.2 linux_x86_64 May 20 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading work.tb_layer_norm_64(fast)
+# Loading sv_std.std
+# Loading work.layer_norm_top(fast)
+#  run -all
+# === LayerNorm Test: D_MODEL=64 ===
+# Test: Alternating 2.0 and 0.5 (64 elements)
+# Input (first 8): [0800, 0200, 0800, 0200, 0800, 0200, 0800, 0200]
+# Results:
+#   Mean: 000500 (1280)
+#   Std Dev: 000xxx (X)
+#   Output (first 8): [xxxx, xxxx, xxxx, xxxx, xxxx, xxxx, xxxx, xxxx]
+# ¿ FAILED: Output is undefined
+# ** Note: $finish    : tb_layer_norm_64.v(159)
+#    Time: 1045 ns  Iteration: 1  Instance: /tb_layer_norm_64
+# End time: 02:17:56 on Jun 06,2025, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0

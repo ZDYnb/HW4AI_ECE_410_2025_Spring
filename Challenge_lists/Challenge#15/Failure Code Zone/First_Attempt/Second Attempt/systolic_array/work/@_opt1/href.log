@@ -1,0 +1,7 @@
+BEGIN 1:processing_element:fast:work
+    stored_weight_reg :  1:tb_processing_element:fast:work
+    activation_s1_reg :  1:tb_processing_element:fast:work
+    mac_product_output :  1:tb_processing_element:fast:work
+    psum_in_s1_reg :  1:tb_processing_element:fast:work
+    mac_product_valid :  1:tb_processing_element:fast:work
+END 

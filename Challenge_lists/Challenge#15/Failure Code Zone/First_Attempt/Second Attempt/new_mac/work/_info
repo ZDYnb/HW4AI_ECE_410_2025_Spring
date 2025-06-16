@@ -1,0 +1,181 @@
+m255
+K4
+z2
+Z0 !s12c _opt1
+Z1 !s99 nomlopt
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+Z2 !s12c _opt
+R1
+R2
+R1
+!s11f vlog 2024.2 2024.05, May 20 2024
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z3 d/u/ezhou/verilog/ece410/new_mac
+T_opt
+!s110 1749027468
+Vn4j^Ci>5=nl:K=`41;>J^1
+04 5 4 work pe_tb fast 0
+=1-5254006cf05e-68400a8c-699-3488
+R1
+Z4 !s12f OEM100
+Z5 !s12b OEM100
+Z6 !s124 OEM100
+Z7 !s135 nogc
+Z8 o-quiet -auto_acc_if_foreign -work work
+Z9 tCvgOpt 0
+n@_opt
+Z10 OL;O;2024.2;79
+R3
+T_opt1
+!s110 1749031262
+V?eJd603EE22f15^b0lo^`3
+04 17 4 work systolic_array_tb fast 0
+=1-5254006cf05e-6840195e-3e9d5-35c1
+R1
+R4
+R5
+R6
+R7
+R8
+R9
+n@_opt1
+R10
+vmac_unit
+Z11 2mac_unit.v|processing_element.v|systolic_array.v|systolic_array_tb.v
+Z12 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z13 !s110 1749031259
+!i10b 1
+!s100 iJNY0I1B20<SFJAMF9Oeo2
+I=9cJI@914zKPc5zELR;IZ0
+S1
+R3
+w1749030187
+8mac_unit.v
+Fmac_unit.v
+!i122 15
+L0 5 64
+Z14 VDg1SIo80bB@j0V0VzS_@n1
+Z15 OL;L;2024.2;79
+r1
+!s85 0
+31
+Z16 !s108 1749031259.000000
+Z17 !s107 systolic_array_tb.v|systolic_array.v|processing_element.v|mac_unit.v|
+Z18 !s90 -sv|mac_unit.v|processing_element.v|systolic_array.v|systolic_array_tb.v|
+!i113 0
+Z19 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R9
+vpe_tb
+2mac_unit.v|processing_element.v|pe_tb.v
+R12
+!s110 1749027464
+!i10b 1
+!s100 nYNTEBH5i4L25B]Q`imWT0
+IJ33f75QLEh1HeUPFf6ZmJ1
+S1
+R3
+w1749027460
+8pe_tb.v
+Fpe_tb.v
+!i122 1
+L0 2 295
+R14
+R15
+r1
+!s85 0
+31
+!s108 1749027463.000000
+!s107 pe_tb.v|processing_element.v|mac_unit.v|
+!s90 -sv|mac_unit.v|processing_element.v|pe_tb.v|
+!i113 0
+R19
+R9
+vprocessing_element
+R11
+R12
+R13
+!i10b 1
+!s100 788XTG0FcH<Y2ORT[WEZK0
+IH@C6H_hb5JMAng6Uff8bA3
+S1
+R3
+w1749026334
+8processing_element.v
+Fprocessing_element.v
+!i122 15
+L0 6 118
+R14
+R15
+r1
+!s85 0
+31
+R16
+R17
+R18
+!i113 0
+R19
+R9
+vsystolic_array
+R11
+R12
+R13
+!i10b 1
+!s100 I@IH<NZWPjkHeQ39XC6P43
+I3CVGG;6b41Da1_caLT[J_3
+S1
+R3
+w1749030477
+8systolic_array.v
+Fsystolic_array.v
+!i122 15
+L0 10 108
+R14
+R15
+r1
+!s85 0
+31
+R16
+R17
+R18
+!i113 0
+R19
+R9
+vsystolic_array_tb
+R11
+R12
+R13
+!i10b 1
+!s100 PQUf1ELIg<IJm7U0nRaOP1
+IDINn0Fg2aaJjIP59OWg1Z0
+S1
+R3
+w1749031257
+8systolic_array_tb.v
+Fsystolic_array_tb.v
+!i122 15
+L0 6 224
+R14
+R15
+r1
+!s85 0
+31
+R16
+R17
+R18
+!i113 0
+R19
+R9

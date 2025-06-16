@@ -1,0 +1,14 @@
+BEGIN 1:exp_lut_unit:fast:work
+    x_offset :  1:tb_debug_values:fast:work
+    x_clamped :  1:tb_debug_values:fast:work
+    rom_addr :  1:tb_debug_values:fast:work
+    x_signed :  1:tb_debug_values:fast:work
+END 
+BEGIN 1:softmax_controller_reciprocal:fast:work
+    exp_values :  1:tb_debug_values:fast:work
+    exp_input :  1:tb_debug_values:fast:work
+    softmax_results :  1:tb_debug_values:fast:work
+    reciprocal_output :  1:tb_debug_values:fast:work
+    max_value :  1:tb_debug_values:fast:work
+    sum_result :  1:tb_debug_values:fast:work
+END 

@@ -1,0 +1,240 @@
+# vsim -c -do "run -all; quit" tb_gelu_lut_unit 
+# Start time: 19:38:47 on May 29,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Sim-64
+# //  Version 2024.2 linux_x86_64 May 20 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading work.tb_gelu_lut_unit(fast)
+# run -all
+# =============================================================================
+# ENHANCED GELU LUT TESTBENCH
+# Data Width: 16 bits, Fractional Bits: 10
+# LUT Range: [-4.0, +3.875], Step: 0.125
+# =============================================================================
+# === Test Case 1: Key Values ===
+# Test 1:
+#   x_in     =  -4096 (-4.0000)
+#   Expected = -0.000070
+#   Actual   = 0.000000 (0x0000)
+#   Error    = 0.000070 (-100.00%)
+#   Out_range= 0
+#   Result   = PASS
+# 
+# Test 2:
+#   x_in     =  -2048 (-2.0000)
+#   Expected = -0.045402
+#   Actual   = -0.044922 (0xffd2)
+#   Error    = 0.000480 (-1.06%)
+#   Out_range= 0
+#   Result   = PASS
+# 
+# Test 3:
+#   x_in     =  -1024 (-1.0000)
+#   Expected = -0.158808
+#   Actual   = -0.159180 (0xff5d)
+#   Error    = -0.000372 (0.23%)
+#   Out_range= 0
+#   Result   = PASS
+# 
+# Test 4:
+#   x_in     =   -512 (-0.5000)
+#   Expected = -0.154286
+#   Actual   = -0.154297 (0xff62)
+#   Error    = -0.000011 (0.01%)
+#   Out_range= 0
+#   Result   = PASS
+# 
+# Test 5:
+#   x_in     =      0 (0.0000)
+#   Expected = 0.000000
+#   Actual   = 0.000000 (0x0000)
+#   Error    = 0.000000 (0.00%)
+#   Out_range= 0
+#   Result   = PASS
+# 
+# Test 6:
+#   x_in     =    512 (0.5000)
+#   Expected = 0.345714
+#   Actual   = 0.345703 (0x0162)
+#   Error    = -0.000011 (-0.00%)
+#   Out_range= 0
+#   Result   = PASS
+# 
+# Test 7:
+#   x_in     =   1024 (1.0000)
+#   Expected = 0.841192
+#   Actual   = 0.840820 (0x035d)
+#   Error    = -0.000372 (-0.04%)
+#   Out_range= 0
+#   Result   = PASS
+# 
+# Test 8:
+#   x_in     =   2048 (2.0000)
+#   Expected = 1.954598
+#   Actual   = 1.955078 (0x07d2)
+#   Error    = 0.000480 (0.02%)
+#   Out_range= 0
+#   Result   = PASS
+# 
+# Test 9:
+#   x_in     =   3072 (3.0000)
+#   Expected = 2.996363
+#   Actual   = 2.996094 (0x0bfc)
+#   Error    = -0.000269 (-0.01%)
+#   Out_range= 0
+#   Result   = PASS
+# 
+# Test 10:
+#   x_in     =   3968 (3.8750)
+#   Expected = 3.874874
+#   Actual   = 3.875000 (0x0f80)
+#   Error    = 0.000126 (0.00%)
+#   Out_range= 1
+#   Result   = PASS
+# 
+# === Test Case 2: LUT Step Alignment ===
+# Test 11:
+#   x_in     =  -2176 (-2.1250)
+#   Expected = -0.035480
+#   Actual   = -0.035156 (0xffdc)
+#   Error    = 0.000324 (-0.91%)
+#   Out_range= 0
+#   Result   = PASS
+# 
+# Test 12:
+#   x_in     =  -1792 (-1.7500)
+#   Expected = -0.070205
+#   Actual   = -0.070312 (0xffb8)
+#   Error    = -0.000108 (0.15%)
+#   Out_range= 0
+#   Result   = PASS
+# 
+# Test 13:
+#   x_in     =   -128 (-0.1250)
+#   Expected = -0.056283
+#   Actual   = -0.056641 (0xffc6)
+#   Error    = -0.000358 (0.64%)
+#   Out_range= 0
+#   Result   = PASS
+# 
+# Test 14:
+#   x_in     =    128 (0.1250)
+#   Expected = 0.068717
+#   Actual   = 0.068359 (0x0046)
+#   Error    = -0.000358 (-0.52%)
+#   Out_range= 0
+#   Result   = PASS
+# 
+# Test 15:
+#   x_in     =   1280 (1.2500)
+#   Expected = 1.117714
+#   Actual   = 1.118164 (0x0479)
+#   Error    = 0.000450 (0.04%)
+#   Out_range= 0
+#   Result   = PASS
+# 
+# Test 16:
+#   x_in     =   2560 (2.5000)
+#   Expected = 2.484916
+#   Actual   = 2.485352 (0x09f1)
+#   Error    = 0.000436 (0.02%)
+#   Out_range= 0
+#   Result   = PASS
+# 
+# === Test Case 3: Out-of-Range Values ===
+# Test 17:
+#   x_in     =  -5120 (-5.0000)
+#   Expected = -0.000000
+#   Actual   = 0.000000 (0x0000)
+#   Error    = 0.000000 (-100.00%)
+#   Out_range= 1
+#   Result   = PASS
+# 
+# Test 18:
+#   x_in     =  -4608 (-4.5000)
+#   Expected = -0.000005
+#   Actual   = 0.000000 (0x0000)
+#   Error    = 0.000005 (-100.00%)
+#   Out_range= 1
+#   Result   = PASS
+# 
+# Test 19:
+#   x_in     =   4096 (4.0000)
+#   Expected = 3.999930
+#   Actual   = 4.000000 (0x1000)
+#   Error    = 0.000070 (0.00%)
+#   Out_range= 1
+#   Result   = PASS
+# 
+# Test 20:
+#   x_in     =   5120 (5.0000)
+#   Expected = 5.000000
+#   Actual   = 5.000000 (0x1400)
+#   Error    = 0.000000 (0.00%)
+#   Out_range= 1
+#   Result   = PASS
+# 
+# === Test Case 4: Precision Tests ===
+# Test 21:
+#   x_in     =  -4095 (-3.9990)
+#   Expected = -0.000071
+#   Actual   = 0.000000 (0x0000)
+#   Error    = 0.000071 (-100.00%)
+#   Out_range= 0
+#   Result   = PASS
+# 
+# Test 22:
+#   x_in     =   3967 (3.8740)
+#   Expected = 3.873874
+#   Actual   = 3.750000 (0x0f00)
+#   Error    = -0.123874 (-3.20%)
+#   Out_range= 0
+#   Result   = FAIL (Error > 2%)
+# 
+# Test 23:
+#   x_in     =      1 (0.0010)
+#   Expected = 0.000500
+#   Actual   = 0.000000 (0x0000)
+#   Error    = -0.000500 (-100.00%)
+#   Out_range= 0
+#   Result   = PASS
+# 
+# Test 24:
+#   x_in     =     -1 (-0.0010)
+#   Expected = -0.000500
+#   Actual   = -0.056641 (0xffc6)
+#   Error    = -0.056141 (11237.17%)
+#   Out_range= 0
+#   Result   = FAIL (Error > 2%)
+# 
+# === Test Case 5: Rapid Input Test ===
+# Testing rapid consecutive inputs...
+# Rapid input test completed.
+# 
+# =============================================================================
+# TEST SUMMARY
+# =============================================================================
+# Total Tests:    24
+# Passed:         22
+# Failed:         2
+# Pass Rate:      91.7%
+# Max Error:      0.123874
+# Avg Error:      0.007704
+# =============================================================================
+# ¿ 2 TESTS FAILED - Check implementation!
+# =============================================================================
+# ** Note: $finish    : tb_gelu_lut_unit.v(227)
+#    Time: 1015 ns  Iteration: 1  Instance: /tb_gelu_lut_unit
+# End time: 19:38:49 on May 29,2025, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0

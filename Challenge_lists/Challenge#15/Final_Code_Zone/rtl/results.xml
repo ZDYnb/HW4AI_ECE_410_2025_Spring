@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1750032242" />
+    <testcase name="test_separated_bus_monitoring" classname="test_tiny_gpt2" file="/mnt/d/AI4Hardware_ECE_410_2025_Spring/Challenge_lists/Challenge#15/Final_Code_Zone/rtl/test_tiny_gpt2.py" lineno="157" time="0.8080737590789795" sim_time_ns="4850.001" ratio_time="6001.928593161965" />
+  </testsuite>
+</testsuites>
